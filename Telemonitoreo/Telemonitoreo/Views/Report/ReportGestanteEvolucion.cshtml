@@ -1,0 +1,46 @@
+﻿@using Telemonitoreo.Utils; 
+@{
+    ViewBag.Title = "ReportGestanteParticipante";
+}
+
+<h2>Reporte de Evolución de Gestantes</h2>
+@Html.AntiForgeryToken()
+<div class="row">
+    <div class="col-md-4">
+        <div class="col-md-3">
+            <label for="FechaI">Fecha Inicio</label>
+        </div>
+        <div class="col-md-9">
+            <input name="FechaI" class="text-box single-line datepicker textbox-bring-to-front" id="FechaI" type="text" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-3">
+            <label for="FechaF">Fecha Fin</label>
+        </div>
+        <div class="col-md-9">
+            <input name="FechaF" class="text-box single-line datepicker textbox-bring-to-front" id="FechaF" type="text" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-3">
+            <label for="RegionId">Región</label>
+        </div>
+        <div class="col-md-9">
+            @Html.DropDownList("RegionId", null, GlobalConstants.SeleccioneRegion, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-8">
+        <div class="col-md-9 col-md-offset-3">
+            <input name="btnBuscar" class="btn btn-primary btn-group-sm" id="btnBuscar" value="Ver Reporte" type="button">
+        </div>
+    </div>
+</div>
+<br />
+@Html.Partial("ReportGestanteEvolucionASPX")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqDatePicker")
+    @Scripts.Render("~/bundles/jqReporteGestanteEvolucionList")
+}

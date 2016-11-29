@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+    {
+        var usuarioDato = ((ClaimsIdentity)User.Identity).FindFirst("ApellidosNombres");
+        string headerDatos = usuarioDato != null ? "Usuario: " + usuarioDato.Value : string.Empty;
+    @Html.AntiForgeryToken()
+    <div class="col-md-12">
+        @Html.Label(headerDatos, new { style = "margin-bottom: 0px;" })
+        &nbsp;
+        <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+    </div>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Iniciar Sesion", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

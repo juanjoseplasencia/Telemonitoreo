@@ -1,0 +1,229 @@
+﻿@model Telemonitoreo.Models.GestanteModel
+@using Telemonitoreo.Utils; 
+
+@{
+    ViewBag.Title = "Crear Gestante";
+}
+
+<h2>Crear Gestante</h2>
+@{
+    var horarioListItems = new List<SelectListItem>
+    {
+        new SelectListItem
+        {
+            Text =  GlobalConstants.TurnoAm,
+            Value = "1"
+        },
+        new SelectListItem
+        {
+            Text =  GlobalConstants.TurnoPm,
+            Value = "2"
+        }
+    };
+}
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GestanteNroDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.GestanteNroDocumento, new { @class = "form-control", @maxlength = "8"})
+                    <span class="input-group-btn" style="width: 23% !important;">
+                        <button class="btn btn-primary" type="button" onclick="getinfogestante();">Consultar</button>
+                    </span>
+                </div>
+                @*@Html.EditorFor(model => model.GestanteNroDocumento, new {htmlAttributes = new {@class = "form-control"}})*@
+                @Html.ValidationMessageFor(model => model.GestanteNroDocumento, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })
+                @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.APaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.APaterno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })
+                @Html.ValidationMessageFor(model => model.APaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AMaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AMaterno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })
+                @Html.ValidationMessageFor(model => model.AMaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaNacimiento, "Date")
+                @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Edad",  htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Edad", string.Empty, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.EstablecimientoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento, 
+                htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EstablecimientoId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstablecimientoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.TextBox("Region", string.Empty, htmlAttributes: new { @class = "form-control", @style = "width:140%" })
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Establecimiento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.EstablecimientoId)
+                @Html.ValidationMessageFor(model => model.EstablecimientoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstablecimientoNotificacionId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EstablecimientoNotificacionId", null, GlobalConstants.SeleccioneEstablecimiento,
+                htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EstablecimientoNotificacionId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaUltimaRegla, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaUltimaRegla, "Date")
+                @Html.ValidationMessageFor(model => model.FechaUltimaRegla, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaProbableParto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaProbableParto, "Date")
+                @Html.ValidationMessageFor(model => model.FechaProbableParto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PresionSistolicaBase, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PresionSistolicaBase, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PresionSistolicaBase, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PresionDiastolicaBase, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PresionDiastolicaBase, htmlAttributes : new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PresionDiastolicaBase, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiagnosticoIngreso, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.DiagIngresoCie10, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.DiagIngreso, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.DiagnosticoIngreso)
+                @Html.ValidationMessageFor(model => model.DiagnosticoIngreso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiagnosticoIntermedio1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.DiagIntermedio1Cie10, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.DiagIntermedio1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.DiagnosticoIntermedio1)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiagnosticoIntermedio2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.DiagIntermedio2Cie10, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.DiagIntermedio2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.DiagnosticoIntermedio2)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiagnosticoEgreso, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.DiagEgresoCie10, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.DiagEgreso, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.DiagnosticoEgreso)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.GestanteDireccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GestanteDireccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GestanteDireccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.GestanteEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GestanteEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GestanteEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.GestanteTelefono, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GestanteTelefono, new {htmlAttributes = new {@class = "form-control", @maxlength = "9"}})
+                @Html.ValidationMessageFor(model => model.GestanteTelefono, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.HorarioMensaje, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("HorarioMensaje", horarioListItems, GlobalConstants.SeleccioneHorario,
+                htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HorarioMensaje, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DistritoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DistritoId", null, GlobalConstants.SeleccioneDistrito, 
+                htmlAttributes : new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.DistritoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Grabar" class="btn btn-primary"/>
+            </div>
+        </div>
+        <div id="ajaxpartialtarget"></div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Ver Gestantes", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqDatePicker")
+    @Scripts.Render("~/bundles/jqGestantesForm")
+    @Scripts.Render("~/bundles/jqueryval")
+}

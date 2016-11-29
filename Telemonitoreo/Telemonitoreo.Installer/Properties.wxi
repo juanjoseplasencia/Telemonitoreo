@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include>
+  
+  <!-- IIS Configuration -->
+  <Property Id="FRAMEWORKBASEPATH">
+		<RegistrySearch Id="FindFrameworkDir" 
+                    Root="HKLM" Key="SOFTWARE\Microsoft\.NETFramework" 
+                    Name="InstallRoot" Type="raw"/>
+	</Property>
+	<Property Id="ASPNETREGIIS">
+		<DirectorySearch Id="FindAspNetRegIis"
+                     Path="[FRAMEWORKBASEPATH]" 
+                     Depth="4">
+			<FileSearch Name="aspnet_regiis.exe" MinVersion="4.0"/>
+		</DirectorySearch>
+	</Property>
+</Include>

@@ -1,0 +1,167 @@
+﻿@model Telemonitoreo.Models.GestanteMedicamentoViewModel
+@using Telemonitoreo.Utils;
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Asignación de Medicamentos a Gestante</h2>
+@Styles.Render("~/Content/DataTables-1.8.1/extras/TableTools/media/css/css")
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GestanteMedicamentoId, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group">
+            @Html.LabelFor(model => model.GestanteDni, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GestanteDni, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <input type="hidden" id="KeyGestante" name="KeyGestante" value="@Model.GestanteKey">
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.APaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.APaterno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AMaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AMaterno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreMedico, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreMedico, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstablecimientoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento,
+                htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <fieldset style="border: 1px solid #C0C0C0; padding: 10px; width: 70%;">
+            <legend style="font-weight: bold; margin: 0px; border: 0px; width: auto; font-size: 18px;">Medicamentos</legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Medicamento</label>
+                <div class="col-md-10">
+                    @Html.TextBox("Descripcion", "", htmlAttributes: new { @class = "form-control" })
+                    @Html.Hidden("MedicamentoId")
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Dosis</label>
+                <div class="col-md-10">
+                    @Html.TextBox("Dosis", "", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Frecuencia diaria</label>
+                <div class="col-md-10">
+                    @Html.TextBox("Cantidad", "", htmlAttributes: new {@class = "form-control"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Núm. de días</label>
+                <div class="col-md-10">
+                    @Html.TextBox("Dias", "", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Indicaciones</label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        @Html.TextArea("Instrucciones", "", htmlAttributes: new { @class = "form-control", @style = "-moz-resize: none;-ms-resize: none;-o-resize: none;resize: none;" })
+                        <span class="input-group-btn" style="width: 10% !important;">
+                            <button type="button" class="btn btn-primary" onclick="AddMedicinaEdit();">+</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <table class="tbl hijos" id="tbl">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">ID</th>
+                        <th class="col-md-1">ID Medicamento</th>
+                        <th class="col-md-2">Medicamento</th>
+                        <th class="col-md-2">Dosis</th>
+                        <th class="col-md-2">Nº de días</th>
+                        <th class="col-md-2">Frecuencia</th>
+                        <th class="col-md-3">Indicaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.Medicamentos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.GestanteMedicamentoDetalleId)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.MedicamentoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Dosis)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Dias)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Cantidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Instrucciones)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <input type="button" value="Borrar Medicamento" onclick=" DeleteMedicina() " />
+        </fieldset>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Grabar" class="btn btn-primary" onclick="GuardarMedEdit()" />
+            </div>
+        </div>
+    </div>
+    <div id="ajaxpartialtarget"></div>
+}
+<br/>
+<div>
+    @Html.ActionLink("Ver Listado de Medicamentos", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqDatePicker")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/DataTables")
+    @Scripts.Render("~/bundles/jqGestanteMedicamentosForm")
+}
+

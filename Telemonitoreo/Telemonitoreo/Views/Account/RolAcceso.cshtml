@@ -1,0 +1,168 @@
+﻿@using Telemonitoreo.Models
+
+@{
+    List<RolMenuViewModel> menuList = ViewBag.MenusRoles;
+}
+
+    @{
+    ViewBag.Title = "RolAcceso";
+    }
+
+    <h2>Administración de Roles</h2>
+<div>
+    <table id="tblPermission" class="table table-bordered">
+        <tr>
+            <th style="width: 320px;"></th>
+            <th class="ui-jqgrid-hdiv text-center" style="width: 150px;">Administrador</th>
+            <th class="ui-jqgrid-hdiv text-center" style="width: 150px;">Personal de Salud</th>
+            <th class="ui-jqgrid-hdiv text-center" style="width: 150px;">Analista</th>
+            <th class="ui-jqgrid-hdiv text-center" style="width: 150px;">Gestante</th>
+        </tr>
+        @foreach (var mlp in menuList.Where(p => !p.MenuPadre.HasValue).OrderBy(p => p.Orden))
+        {
+            <tr>
+                <td>
+                    <label>@mlp.Nombre</label>
+                </td>
+                <td class="text-center">
+                    @if (mlp.AccesoAdministrador != null && mlp.AccesoAdministrador.Value)
+                    {
+                        <input name="1_@(mlp.MenuId)" id="1_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox" checked="checked">
+                    }
+                    else
+                    {
+                        <input name="1_@(mlp.MenuId)" id="1_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox">
+                    }
+                </td>
+                <td class="text-center">
+                    @if (mlp.AccesoPersonal != null && mlp.AccesoPersonal.Value)
+                    {
+                        <input name="2_@(mlp.MenuId)" id="2_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox" checked="checked">
+                    }
+                    else
+                    {
+                        <input name="2_@(mlp.MenuId)" id="2_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox">
+                    }
+                </td>
+                <td class="text-center">
+                    @if (mlp.AccesoAnalista != null && mlp.AccesoAnalista.Value)
+                    {
+                        <input name="3_@(mlp.MenuId)" id="3_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox" checked="checked">
+                    }
+                    else
+                    {
+                        <input name="3_@(mlp.MenuId)" id="3_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox">
+                    }
+                </td>
+                <td class="text-center">
+                    @if (mlp.AccesoGestante != null && mlp.AccesoGestante.Value)
+                    {
+                        <input name="4_@(mlp.MenuId)" id="4_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox" checked="checked">
+                    }
+                    else
+                    {
+                        <input name="4_@(mlp.MenuId)" id="4_@(mlp.MenuId)" value="@mlp.MenuId" type="checkbox">
+                    }
+                </td>
+            </tr>
+            @RenderMenuItem(menuList, mlp, 1, 30)
+
+        }
+    </table>
+    <div class="col-md-12 text-right">
+        <input type="button" id="btnGrabar" value="Grabar" class="btn btn-primary" onclick=" ActualizarRoles();" style="margin-right: 20px;" />
+    </div>
+</div>
+    <div id="divResult">
+
+    </div>
+    @helper RenderMenuItem(List<RolMenuViewModel> menuList, RolMenuViewModel mp, int nivel, int padding)
+{
+    foreach (var mc in menuList.Where(p => p.MenuPadre == mp.MenuId).OrderBy(p => p.Orden))
+    {
+        <tr>
+            <td style="padding-left:@(padding)px;">
+                <label>@mc.Nombre</label>
+            </td>
+            <td class="text-center">
+                @if (mc.AccesoAdministrador != null && mc.AccesoAdministrador.Value)
+                {
+                    <input name="1_@(mc.MenuId)" id="1_@(mc.MenuId)" value="@mc.MenuId" type="checkbox" checked="checked">
+                }
+                else
+                {
+                    <input name="1_@(mc.MenuId)" id="1_@(mc.MenuId)" value="@mc.MenuId" type="checkbox">
+                }
+            </td>
+            <td class="text-center">
+                @if (mc.AccesoPersonal != null && mc.AccesoPersonal.Value)
+                {
+                    <input name="2_@(mc.MenuId)" id="2_@(mc.MenuId)" value="@mc.MenuId" type="checkbox" checked="checked">
+                }
+                else
+                {
+                    <input name="2_@(mc.MenuId)" id="2_@(mc.MenuId)" value="@mc.MenuId" type="checkbox">
+                }
+            </td>
+            <td class="text-center">
+                @if (mc.AccesoAnalista != null && mc.AccesoAnalista.Value)
+                {
+                    <input name="3_@(mc.MenuId)" id="3_@(mc.MenuId)" value="@mc.MenuId" type="checkbox" checked="checked">
+                }
+                else
+                {
+                    <input name="3_@(mc.MenuId)" id="3_@(mc.MenuId)" value="@mc.MenuId" type="checkbox">
+                }
+            </td>
+            <td class="text-center">
+                @if (mc.AccesoGestante != null && mc.AccesoGestante.Value)
+                {
+                    <input name="4_@(mc.MenuId)" id="4_@(mc.MenuId)" value="@mc.MenuId" type="checkbox" checked="checked">
+                }
+                else
+                {
+                    <input name="4_@(mc.MenuId)" id="4_@(mc.MenuId)" value="@mc.MenuId" type="checkbox">
+                }
+            </td>
+        </tr>
+        @RenderMenuItem(menuList, mc, nivel + 1, padding * (nivel + 1))
+    }
+}
+    @section Scripts {
+        <script type="text/javascript">
+            function ActualizarRoles() {
+                var arrPermissions = [];
+
+                $("#tblPermission tr td input[name*=\"1_\"]:checked").each(function () {
+                    arrPermissions.push({ AdminMenuId: $(this).val() });
+                });
+                $("#tblPermission tr td input[name*=\"2_\"]:checked").each(function () {
+                    arrPermissions.push({ PerMenuId: $(this).val() });
+                });
+                $("#tblPermission tr td input[name*=\"3_\"]:checked").each(function () {
+                    arrPermissions.push({ AnMenuId: $(this).val() });
+                });
+                $("#tblPermission tr td input[name*=\"4_\"]:checked").each(function () {
+                    arrPermissions.push({ GesMenuId: $(this).val() });
+                });
+
+                var newPermissions = {
+                    jsonData: arrPermissions
+                };
+                $.ajax({
+                    url: getControllerURL("Account") + "/ActualizarPermisos",
+                    type: "POST",
+                    data: JSON.stringify(newPermissions),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        if (result === 1) {
+                            $("#divResult").html("Los cambios se grabaron satisfactoriamente.");
+                        } else {
+                            $("#divResult").html("No se pudo registrar los cambios, intente nuevamente o contacte con soporte técnico.");
+                        }
+                    }
+                });
+            }
+        </script>
+    }

@@ -1,0 +1,217 @@
+﻿@using Telemonitoreo.Utils
+@model Telemonitoreo.Models.GestanteModel
+
+@{
+    ViewBag.Title = "Detalles de Gestante";
+}
+
+<h2>Detalles</h2>
+@helper RenderHora(byte hora)
+{
+    switch (hora)
+    {
+        case 1:
+            @GlobalConstants.TurnoAm
+            break;
+        case 2:
+            @GlobalConstants.TurnoPm
+            break;
+    }
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.GestanteNroDocumento)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.GestanteNroDocumento)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.APaterno)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.APaterno)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.AMaterno)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.AMaterno)
+        </dd>
+
+        <dt class="dt-padded" >
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd class="dd-padded" id="ddFechaNacimiento">
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayName("Edad")
+        </dt>
+
+        <dd class="dd-padded" id="ddEdad">
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.Establecimiento)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.Establecimiento)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.EstablecimientoNotificacion)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.EstablecimientoNotificacion)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.FechaUltimaRegla)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.FechaUltimaRegla)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.FechaProbableParto)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.FechaProbableParto)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.PresionSistolicaBase)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.PresionSistolicaBase)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.PresionDiastolicaBase)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.PresionDiastolicaBase)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.DiagIngreso)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.DiagIngreso)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.DiagIntermedio1)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.DiagIntermedio1)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.DiagIntermedio2)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.DiagIntermedio2)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.DiagEgreso)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.DiagEgreso)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.GestanteDireccion)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.GestanteDireccion)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.GestanteEmail)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.GestanteEmail)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.GestanteTelefono)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.GestanteTelefono)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.HorarioMensaje)
+        </dt>
+
+        <dd class="dt-padded">
+            @RenderHora(Model.HorarioMensaje)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.Distrito)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.Distrito)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.Provincia)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.Provincia)
+        </dd>
+
+        <dt class="dt-padded">
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+
+        <dd class="dd-padded">
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.GestanteKey }) |
+    @Html.ActionLink("Ver Gestantes", "Index")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqGestantesForm")
+}

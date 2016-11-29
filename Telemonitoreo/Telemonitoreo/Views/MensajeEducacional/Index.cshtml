@@ -1,0 +1,73 @@
+﻿@using Telemonitoreo.Utils;
+
+@{
+    ViewBag.Title = "Lista de Mensajes Educacionales";
+}
+
+<h2>Lista de Mensajes Educacionales</h2>
+@using (Html.BeginForm("ExportExcel", "MensajeEducacional", FormMethod.Post, new
+{
+    id = "ListadoMensajeEducacional",
+    enctype = "multipart/form-data"
+}))
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label>Est. de Salud</label>
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento, htmlAttributes: new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="FechaI">Fecha Inicio (Creación)</label>
+            </div>
+            <div class="col-md-9">
+                <input name="FechaI" class="text-box single-line datepicker textbox-bring-to-front" id="FechaI" type="text">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="FechaF">Fecha Fin (Creación)</label>
+            </div>
+            <div class="col-md-9">
+                <input name="FechaF" class="text-box single-line datepicker textbox-bring-to-front" id="FechaF" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="Semana">Semana de Embarazo</label>
+            </div>
+            <div class="col-md-9">
+                <input name="Semana" class="form-control" id="Semana" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+            <div class="col-md-9 col-md-offset-3">
+                <input name="btnBuscar" class="btn btn-primary btn-group-sm" id="btnBuscar" type="button" value="Buscar">
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-11">
+        <table id="gridView"><tr><td></td></tr></table>
+        <div id="pager"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 text-left">
+        <input name="btnEliminar" class="btn btn-primary" id="btnEliminar" type="button" value="Deshabilitar">
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqMensajeEducacional")
+    @Scripts.Render("~/bundles/jqDatePicker")
+}

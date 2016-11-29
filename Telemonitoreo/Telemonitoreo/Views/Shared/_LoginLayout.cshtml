@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemonitoreo - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+    <body>
+        <div id="header">
+            <div class="container">
+                <div class="col-md-6">
+                    <img src="~/images/logo.jpg" />
+                </div>
+                <div class="col-md-6" style="text-align:right;">
+                    <img src="~/images/header.jpg" />
+                </div>
+            </div>
+        </div>
+        <div id="content" class="login-content">
+            <div class="container body-content">
+                @RenderBody()
+            </div>
+        </div>
+        <footer class="login-footer">
+            <div class="col-md-6">
+                <p>&copy; @DateTime.Now.Year - Telemonitoreo</p>
+            </div>
+            <div class="col-md-6 text-right">
+                <img src="~/images/logo_minsa.png" class="bottom-logo" />
+            </div>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,16 @@
+﻿@model DateTime?
+
+@{
+    if (Model != null) 
+    {
+        @Html.TextBox("", String.Format("{0:d}", Model.Value.ToShortDateString()),
+          new { @class = "form-control datepicker", type = "text" })
+    }
+    else
+    {
+        @Html.TextBox("", string.Empty,
+          new { @class = "form-control datepicker", type = "text" })
+
+    }
+
+}

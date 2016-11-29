@@ -1,0 +1,83 @@
+﻿@using Telemonitoreo.Utils
+@model Telemonitoreo.Models.EditPersonalViewModel
+@{
+    ViewBag.Title = "EditPersonal";
+}
+
+<h2>Editar Datos de Usuario</h2>
+@using (Html.BeginForm("EditPersonal", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.UsuarioKey)
+    <span>@ViewBag.MensajeResult</span>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <div style="display: inline-block">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nombres, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Nombres, new { id = "NombresUsuario", @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.APaterno, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.APaterno, new { id = "ApellidoPUsuario", @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AMaterno, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.AMaterno, new { id = "ApellidoMUsuario", @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EstablecimientoId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento,
+            htmlAttributes: new { @class = "form-control", @disabled = "true" })
+        </div>
+        @Html.HiddenFor(m => m.EstablecimientoId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UsuarioDireccion, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UsuarioDireccion, new { id = "DireccionUsuario", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @maxlength = "9"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RecibeAlertas, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("RecibeAlertas", EnumHelper.GetSelectList(typeof(Telemonitoreo.Enums.ListaSiNo), (Telemonitoreo.Enums.ListaSiNo)Model.RecibeAlertas),
+            htmlAttributes: new { @class = "form-control", @disabled = "true" })
+        </div>
+        @Html.HiddenFor(m => m.RecibeAlertas)
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Grabar" />
+        </div>
+    </div>
+}
+
+
+

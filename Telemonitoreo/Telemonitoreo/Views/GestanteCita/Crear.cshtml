@@ -1,0 +1,88 @@
+﻿@model Telemonitoreo.Models.GestanteCitaModel
+@using Telemonitoreo.Utils;
+
+@{
+    ViewBag.Title = "Crear Recordatorio para Cita";
+}
+
+<h2>Crear Recordatorio para Cita</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.GestanteNroDocumento, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <div class="input-group">
+                    @Html.EditorFor(model => model.GestanteNroDocumento, new { htmlAttributes = new { @class = "form-control", @maxlength = "8"} })
+                    <input type="hidden" id="GestanteKey" name="GestanteKey">
+                    <span class="input-group-btn" style="width: 23% !important;">
+                        <button class="btn btn-primary" type="button" id="btnConsultar" onclick="RunAction();">Consultar</button>
+                    </span>
+                </div>
+                @Html.ValidationMessageFor(model => model.GestanteNroDocumento, "", new { @class = "text-danger" })                    
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Nombres</label>
+            <div class="col-md-10">
+                <input id="NombresGestante" name="NombresGestante" type="text" readonly="readonly" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Apellido Paterno</label>
+            <div class="col-md-10">
+                <input id="APaternoGestante" name="APaternoGestante" type="text" readonly="readonly" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Apellido Materno</label>
+            <div class="col-md-10">
+                <input id="AMaternoGestante" name="AMaternoGestante" type="text" readonly="readonly" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaCita, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaCita, "Date")
+                @Html.ValidationMessageFor(model => model.FechaCita, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.HoraCita, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownList("HoraCita", ViewBag.Horas as SelectList, GlobalConstants.SeleccioneHora,
+                htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HoraCita, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstablecimientoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento,
+                htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EstablecimientoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Grabar" class="btn btn-primary"/>
+            </div>
+        </div>
+    </div>
+    <div id="ajaxpartialtarget"></div>
+}
+
+<div>
+    @Html.ActionLink("Ver Recordatorios de Citas", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqDatePicker")
+    @Scripts.Render("~/bundles/jqGestanteCitasForm")    
+    @Scripts.Render("~/bundles/jqueryval")
+}

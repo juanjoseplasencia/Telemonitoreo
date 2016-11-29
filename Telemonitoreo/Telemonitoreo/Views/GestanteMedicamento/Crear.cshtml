@@ -1,0 +1,169 @@
+﻿@model Telemonitoreo.Models.GestanteMedicamentoViewModel
+@using Telemonitoreo.Utils;
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>Asignación de Medicamentos a Gestante</h2>
+@Styles.Render("~/Content/DataTables-1.8.1/extras/TableTools/media/css/css")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="col-md-2 control-label">Número de DNI:</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <input id="GestanteDni" name="GestanteDni" type="text" class="form-control" maxlength="8">
+                    <input type="hidden" id="KeyGestante" name="KeyGestante">
+                    <span class="input-group-btn" style="width: 23% !important;">
+                        <button class="btn btn-primary" type="button" onclick="BuscarGestante();">Consultar</button>
+                    </span>
+                </div>
+                @Html.ValidationMessageFor(model => model.GestanteKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Nombres</label>
+            <div class="col-md-10">
+                <input id="NombresGestante" name="NombresGestante" type="text" class="form-control" readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Apellido Paterno</label>
+            <div class="col-md-10">
+                <input id="APaternoGestante" name="APaternoGestante" type="text" class="form-control" readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Apellido Materno</label>
+            <div class="col-md-10">
+                <input id="AMaternoGestante" name="AMaternoGestante" type="text" class="form-control" readonly="readonly">
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreMedico, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreMedico, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstablecimientoId, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento,
+                    htmlAttributes: new {@class = "form-control"})
+            </div>
+        </div>
+        <fieldset style="border: 1px solid #C0C0C0; padding: 10px; width: 70%;">
+            <legend style="font-weight: bold; margin: 0px; border: 0px; width: auto; font-size: 18px;">Medicamentos</legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Medicamento</label>
+                <div class="col-md-10">
+                    <input id="Descripcion" name="Descripcion" type="text" class="form-control">
+                    <input type="hidden" id="MedicamentoId" name="MedicamentoId">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Dosis</label>
+                <div class="col-md-10">
+                    <input id="Dosis" name="Dosis" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Frecuencia diaria</label>
+                <div class="col-md-10">
+                    <input id="Cantidad" name="Cantidad" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Núm. de días</label>
+                <div class="col-md-10">
+                    <input id="Dias" name="Dias" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Indicaciones</label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <textarea id="Instrucciones" name="Instrucciones" class="form-control" style="-moz-resize: none;-ms-resize: none;-o-resize: none;resize: none;"></textarea>
+                        <span class="input-group-btn" style="width: 10% !important;">
+                            <button type="button" class="btn btn-primary" onclick="AddMedicina();">+</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <table class="tbl hijos" style="width:750px;" id="tbl">
+                <thead>
+                    <tr>
+                        <th style="width: 70px;">ID</th>
+                        <th style="width: 200px;">Medicamento</th>
+                        <th style="width: 90px;">Dosis</th>
+                        <th style="width: 90px;">Nº de días</th>
+                        <th style="width: 80px;">Frecuencia</th>
+                        <th style="width: 220px;">Indicaciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.Medicamentos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.MedicamentoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Dosis)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Dias)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Cantidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayTextFor(i => item.Instrucciones)
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+            <input type="button" value="Borrar Medicamento" onclick=" DeleteMedicina() " />
+        </fieldset>
+        <br/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Grabar" class="btn btn-primary" onclick="GuardarMed()" />
+            </div>
+        </div>
+    </div>
+    <div id="ajaxpartialtarget"></div>
+}
+<div>
+    @Html.ActionLink("Ver Listado de Medicamentos", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqDatePicker")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/DataTables")
+    @Scripts.Render("~/bundles/jqGestanteMedicamentosForm")
+}

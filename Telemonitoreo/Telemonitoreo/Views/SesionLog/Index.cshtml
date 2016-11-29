@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Sesiones</h2>
+@using (Html.BeginForm("ExportarExcel", "SesionLog", FormMethod.Post, new { id = "ListadoSesiones", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="NroDni">DNI</label>
+            </div>
+            <div class="col-md-9">
+                <input name="NroDni" class="form-control" id="NroDni" type="text" maxlength="8">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="FechaI">Fecha Inicio</label>
+            </div>
+            <div class="col-md-9">
+                <input name="FechaI" class="text-box single-line datepicker textbox-bring-to-front" id="FechaI" type="text">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="FechaF">Fecha Final</label>
+            </div>
+            <div class="col-md-9">
+                <input name="FechaF" class="text-box single-line datepicker textbox-bring-to-front" id="FechaF" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="Menu">Opción / Menú</label>
+            </div>
+            <div class="col-md-9">
+                <input name="Menu" class="form-control" id="Menu" type="text">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="APaterno">Apellido Paterno</label>
+            </div>
+            <div class="col-md-9">
+                <input name="APaterno" class="form-control" id="APaterno" type="text">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="AMaterno">Apellido Materno</label>
+            </div>
+            <div class="col-md-9">
+                <input name="AMaterno" class="form-control" id="AMaterno" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+            <div class="col-md-9 col-md-offset-3">
+                <input name="btnBuscar" class="btn btn-primary btn-group-sm" id="btnBuscar" type="button" value="Buscar">
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hdSortColumn" name="hdSortColumn">
+    <input type="hidden" id="hdSortDirection" name="hdSortDirection">
+}
+<div class="row">
+    <div class="col-md-11">
+        <div class="text-left">
+            <input name="btnExportarExcel" class="btn btn-primary btn-group-sm" id="btnExportarExcel" type="button" value="Exportar">
+        </div>
+        <table id="gridView"><tr><td></td></tr></table>
+        <div id="pager"></div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqSesionLog")
+    @Scripts.Render("~/bundles/jqDatePicker")
+}

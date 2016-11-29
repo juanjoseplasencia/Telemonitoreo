@@ -1,0 +1,91 @@
+﻿@using Telemonitoreo.Utils;
+
+@{
+    ViewBag.Title = "Lista de Recordatorios de Citas";
+}
+
+<h2>Lista de Recordatorios de Citas</h2>
+
+@using (Html.BeginForm("ExportarExcel", "GestanteCita", FormMethod.Post, new { id = "ListadoGestanteCitas", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="GestanteNroDocumento">DNI</label>
+            </div>
+            <div class="col-md-9">
+                <input name="GestanteNroDocumento" class="form-control" id="GestanteNroDocumento" type="text" maxlength="8">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="APaterno">A. Paterno</label>
+            </div>
+            <div class="col-md-9">
+                <input name="APaterno" class="form-control" id="APaterno" type="text">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="AMaterno">A. Materno</label>
+            </div>
+            <div class="col-md-9">
+                <input name="AMaterno" class="form-control" id="AMaterno" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="EstablecimientoId">Est. de Salud</label>
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento,
+                    htmlAttributes: new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="FechaCitaInicio">Fecha Inicio(Citas)</label>
+            </div>
+            <div class="col-md-9">
+                <input name="FechaCitaInicio" class="form-control datepicker textbox-bring-to-front" id="FechaCitaInicio" type="text">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="FechaCitaFin">Fecha Fin(Citas)</label>
+            </div>
+            <div class="col-md-9">
+                <input name="FechaCitaFin" class="form-control datepicker textbox-bring-to-front" id="FechaCitaFin" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+            <div class="col-md-9 col-md-offset-3">
+                <input name="btnBuscar" class="btn btn-primary btn-group-sm" id="btnBuscar" type="button" value="Buscar">
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hdSortColumn" name="hdSortColumn">
+    <input type="hidden" id="hdSortDirection" name="hdSortDirection">
+}
+<div class="row">
+    <div class="col-md-11">
+        <div class="text-left">
+            <input name="btnExportarExcel" class="btn btn-primary btn-group-sm" id="btnExportarExcel" type="button" value="Exportar">
+        </div>
+        <table id="gridView"><tr><td></td></tr></table>
+        <div id="pager"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 text-left">
+        <input name="btnEliminar" class="btn btn-primary" id="btnEliminar" type="button" value="Eliminar">
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqDatePicker")
+    @Scripts.Render("~/bundles/jqGestanteCitas")
+}

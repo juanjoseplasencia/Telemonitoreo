@@ -1,0 +1,24 @@
+﻿@model Telemonitoreo.Models.ReniecViewModel
+<div>
+    @if (Model.NumDni == null)
+    {
+        @Html.TextBox("Error", "DNI no encontrado en servicio de RENIEC", new { id = "ReniecError", @class = "hidden" })
+        @Html.TextBoxFor(m => m.CodRetorno, new { id = "ReniecCodRetorno", @class = "hidden" })
+    }
+    else if (Model.CodRetorno.Equals("0000") && !string.IsNullOrWhiteSpace(Model.NumDni))
+         {
+            string fechaNacimiento = Model.FechaNacimiento.ToShortDateString();
+            @Html.TextBoxFor(m => m.Nombres, new { id = "ReniecNombres", @class = "hidden" })
+            @Html.TextBoxFor(m => m.APaterno, new { id = "ReniecAPaterno", @class = "hidden" })
+            @Html.TextBoxFor(m => m.AMaterno, new { id = "ReniecAMaterno", @class = "hidden" })
+            @Html.TextBoxFor(m => m.Direccion, new { id = "ReniecDireccion", @class = "hidden" })
+            @Html.TextBoxFor(m => m.GeneroId, new { id = "ReniecGeneroId", @class = "hidden" })
+            @Html.TextBox("FechaNacimiento", fechaNacimiento, new { id = "ReniecFNacimiento", @class = "hidden" })
+            @Html.TextBoxFor(m => m.CodRetorno, new { id = "ReniecCodRetorno", @class = "hidden" })        
+         }
+         else
+         {
+            @Html.TextBox("Error", "Dni no encontrado en servicio de RENIEC", new { id = "ReniecError", @class = "hidden" })
+            @Html.TextBoxFor(m => m.CodRetorno, new { id = "ReniecCodRetorno", @class = "hidden" })
+         }
+</div>

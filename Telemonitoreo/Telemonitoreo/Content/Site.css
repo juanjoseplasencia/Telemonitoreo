@@ -1,0 +1,345 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*Demo for menu*/
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#cssmenu {
+  width: 200px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #ffffff;
+}
+#cssmenu ul ul {
+  display: none;
+}
+.align-right {
+  float: right;
+}
+#cssmenu > ul > li > a {
+  padding: 15px 20px;
+  border-left: 1px solid #008f7d;
+  border-right: 1px solid #008f7d;
+  border-top: 1px solid #008f7d;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  background: #36aae7;
+  background: -webkit-linear-gradient(#09A592, #09A592);
+  background: -moz-linear-gradient(#09A592, #09A592);
+  background: -o-linear-gradient(#09A592, #09A592);
+  background: -ms-linear-gradient(#09A592, #09A592);
+  background: linear-gradient(#09A592, #09A592);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+#cssmenu > ul > li > a:hover,
+#cssmenu > ul > li.active > a,
+#cssmenu > ul > li.open > a {
+  color: #eeeeee;
+  background: #1fa0e4;
+  background: -webkit-linear-gradient(#09A592, #09A592);
+  background: -moz-linear-gradient(#09A592, #09A592);
+  background: -o-linear-gradient(#09A592, #09A592);
+  background: -ms-linear-gradient(#09A592, #09A592);
+  background: linear-gradient(#09A592, #09A592);
+}
+#cssmenu > ul > li.open > a {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #008f7d;
+}
+#cssmenu > ul > li:last-child > a,
+#cssmenu > ul > li.last > a {
+  border-bottom: 1px solid #008f7d;
+}
+.holder {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.holder::after,
+.holder::before {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 6px;
+  height: 6px;
+  right: 20px;
+  z-index: 10;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+.holder::after {
+  top: 17px;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+}
+#cssmenu > ul > li > a:hover > span::after,
+#cssmenu > ul > li.active > a > span::after,
+#cssmenu > ul > li.open > a > span::after {
+  border-color: #eeeeee;
+}
+.holder::before {
+  top: 18px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-top-color: inherit;
+  border-left-color: inherit;
+}
+#cssmenu ul ul li a {
+  cursor: pointer;
+  border-bottom: 1px solid #09A592;
+  border-left: 1px solid #09A592;
+  border-right: 1px solid #09A592;
+  padding: 10px 20px;
+  z-index: 1;
+  text-decoration: none;
+  font-size: 13px;
+  color: #eeeeee;
+  background: #2ac5b2;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+#cssmenu ul ul li:hover > a,
+#cssmenu ul ul li.open > a,
+#cssmenu ul ul li.active > a {
+  background: #7E97A2;
+  color: #ffffff;
+}
+#cssmenu ul ul li:first-child > a {
+  box-shadow: none;
+}
+#cssmenu ul ul ul li:first-child > a {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+#cssmenu ul ul ul li a {
+  padding-left: 30px;
+}
+#cssmenu > ul > li > ul > li:last-child > a,
+#cssmenu > ul > li > ul > li.last > a {
+  border-bottom: 0;
+}
+#cssmenu > ul > li > ul > li.open:last-child > a,
+#cssmenu > ul > li > ul > li.last.open > a {
+  border-bottom: 1px solid #7E97A2;
+}
+#cssmenu > ul > li > ul > li.open:last-child > ul > li:last-child > a {
+  border-bottom: 0;
+}
+#cssmenu ul ul li.has-sub > a::after {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 5px;
+  height: 5px;
+  right: 20px;
+  z-index: 10;
+  top: 11.5px;
+  border-top: 2px solid #eeeeee;
+  border-left: 2px solid #eeeeee;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+#cssmenu ul ul li.active > a::after,
+#cssmenu ul ul li.open > a::after,
+#cssmenu ul ul li > a:hover::after {
+  border-color: #ffffff;
+}
+
+/*No mostrar titulo en JQuery UI Dialogs para alerta y confirmacion*/
+.customdialog-no-title .ui-dialog-titlebar {display: none}
+.customdialog-no-closebutton .ui-dialog-titlebar-close {display: none}
+
+/*Footer at the bottom*/
+html,
+body {
+	margin:0;
+	padding:0;
+	height: 100%;
+    position: relative;
+}
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+#header {
+	padding-top:10px;
+}
+#content {
+	padding-bottom:40px; /* Height of the footer element */
+}
+#content.login-content {
+    padding-bottom: 80px;
+}
+footer {
+	width:100%;
+	height:40px;
+    line-height: 40px;
+	position:absolute;
+	bottom:0;
+	left:0;
+    text-align: left;
+    border-top: 1px solid #eee;
+    overflow: hidden;
+}
+footer.login-footer {
+    height: 80px;
+    line-height: 80px;
+}
+footer.login-footer > div > p {
+    margin-bottom: 0;
+}
+footer > p {
+    margin-bottom: 0;
+    padding-left: 15px;
+}
+.bottom-logo {
+    height: 80px;
+}
+
+/*Clases generales*/
+.top-action-bar > div {
+    background-color: #444688;
+    min-height: 30px;
+}
+.top-action-bar > div label {
+    color: #fff;
+    line-height: 30px;
+}
+.top-action-bar > div a {
+    color: #fff;
+    line-height: 30px;
+}
+.top-action-bar > div a:hover {
+    color: #fff;
+}
+.row {
+    padding-top: 5px;
+}
+.btn-primary {
+    background-color: #444688;
+}
+.btn-primary:hover {
+    background-color: #4b4d8e;
+}
+.btn-primary:focus, .btn-primary.focus {
+    background-color: #414387;
+}
+
+/*Cambios jquery grid ui*/
+.ui-jqgrid .ui-jqgrid-view {
+    font-size: 14px;
+}
+.ui-jqgrid .ui-jqgrid-sortable {
+    height: auto;
+}
+.ui-jqgrid-hdiv {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    background: #36aae7;
+    background: -webkit-linear-gradient(#09A592, #09A592);
+    background: -moz-linear-gradient(#09A592, #09A592);
+    background: -o-linear-gradient(#09A592, #09A592);
+    background: -ms-linear-gradient(#09A592, #09A592);
+    background: linear-gradient(#09A592, #09A592);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+.ui-th-column.ui-th-ltr.active {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    background: #36aae7;
+    background: -webkit-linear-gradient(#09A592, #4fd2c2);
+    background: -moz-linear-gradient(#09A592, #4fd2c2);
+    background: -o-linear-gradient(#09A592, #4fd2c2);
+    background: -ms-linear-gradient(#09A592, #4fd2c2);
+    background: linear-gradient(#09A592, #4fd2c2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.ui-widget-header {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    background: #36aae7;
+    background: -webkit-linear-gradient(#09A592, #4fd2c2);
+    background: -moz-linear-gradient(#09A592, #4fd2c2);
+    background: -o-linear-gradient(#09A592, #4fd2c2);
+    background: -ms-linear-gradient(#09A592, #4fd2c2);
+    background: linear-gradient(#09A592, #4fd2c2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border: #09A592;
+}
+
+/*Cambios tables en 'sub-forms'*/
+table.hijos td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+}
+
+table.hijos th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+}
+
+/*Elementos dt y dd con padding-top en vistas de Ver*/
+.dt-padded {
+    padding-top: 12px;
+}
+
+.dd-padded {
+    padding-top: 12px;
+}
+
+/*Traer textboxes con class="form-control datepicker" a primer plano en vistas de Ver*/
+.textbox-bring-to-front {
+    position: relative; 
+    z-index: 100000;
+}
+
+/*Mejorar el contraste en iconos de sorting en headers en vistas de Ver*/
+span.ui-disabled {
+    opacity: -0.65;
+}
+

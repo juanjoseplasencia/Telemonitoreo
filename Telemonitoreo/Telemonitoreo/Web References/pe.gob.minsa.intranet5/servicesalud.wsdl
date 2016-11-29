@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetListaEstablecimientoSalud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ubigeo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodDisaRedMicroRed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodCentroPoblado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DescripcionEntidadSectorial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoSectorial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EstabFechaReg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EstabFechaMod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListaEstablecimientoSaludResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListaEstablecimientoSaludResult" type="tns:ArrayOfEstablecimientoSalud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEstablecimientoSalud">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EstablecimientoSalud" nillable="true" type="tns:EstablecimientoSalud" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EstablecimientoSalud">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TablaGenerica">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoEstSalud" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoEstabDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodClasificacion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DescClasificacion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabNombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabNombreComer" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Institucion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabDir" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstUbigeo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProvDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DepaDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DistDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstTelefono" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstRadio" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoDocFuncionam" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocFuncionam" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabOtraLicencia" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabEmail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FechaInicio" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FechaCreacion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabNroRes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CtgCodigo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabTipoDoc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabDocGz" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstAmbiente" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServFun" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServSuspen" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Especialidad" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabGrupoObj" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabHorario" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabEstado" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabSituacion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabCondicion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabInspeccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Y" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="X" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Z" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodCcPp" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DescCcPp" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabCodDisa" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabCodRed" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabCodMRed" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabDescDisa" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabDescRed" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabDescMRed" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabCodUE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabCodCLAS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabCodODSIS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabFechaReg" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabFechaMod" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabRUC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabRazSocial" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodDepartamento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodProvincia" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodDistrito" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Etiqueta" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TablaGenerica">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="idTabla" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sidTabla" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetListaEstablecimientoSaludSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListaEstablecimientoSalud" />
+  </wsdl:message>
+  <wsdl:message name="GetListaEstablecimientoSaludSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListaEstablecimientoSaludResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSaludSoap">
+    <wsdl:operation name="GetListaEstablecimientoSalud">
+      <wsdl:input message="tns:GetListaEstablecimientoSaludSoapIn" />
+      <wsdl:output message="tns:GetListaEstablecimientoSaludSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSaludSoap" type="tns:ServiceSaludSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListaEstablecimientoSalud">
+      <soap:operation soapAction="http://tempuri.org/GetListaEstablecimientoSalud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSaludSoap12" type="tns:ServiceSaludSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListaEstablecimientoSalud">
+      <soap12:operation soapAction="http://tempuri.org/GetListaEstablecimientoSalud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceSalud">
+    <wsdl:port name="ServiceSaludSoap" binding="tns:ServiceSaludSoap">
+      <soap:address location="http://intranet5.minsa.gob.pe/wsrenaes/servicesalud.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSaludSoap12" binding="tns:ServiceSaludSoap12">
+      <soap12:address location="http://intranet5.minsa.gob.pe/wsrenaes/servicesalud.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

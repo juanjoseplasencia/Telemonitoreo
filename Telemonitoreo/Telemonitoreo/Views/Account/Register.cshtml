@@ -1,0 +1,178 @@
+﻿@model Telemonitoreo.Models.RegisterViewModel
+@using Telemonitoreo.Utils;
+
+@{
+    ViewBag.Title = "Crear usuario";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Crear un nuevo usuario.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @maxlength = "8"})
+                <span class="input-group-btn" style="width: 23% !important;">
+                    <button class="btn btn-primary" type="button" onclick=" RunAction(); ">Consultar</button>
+                </span>
+            </div>
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nombres, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Nombres, new { id = "NombresUsuario", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.APaterno, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.APaterno, new { id = "ApellidoPUsuario", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AMaterno, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.AMaterno, new { id = "ApellidoMUsuario", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EstablecimientoId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("EstablecimientoId", null, GlobalConstants.SeleccioneEstablecimiento,
+            htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("RoleName", null, GlobalConstants.SeleccioneRol,
+            htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UsuarioDireccion, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UsuarioDireccion, new { id = "DireccionUsuario", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.EstadoId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("EstadoId", EnumHelper.GetSelectList(typeof(Telemonitoreo.Enums.EstadoType)),
+            GlobalConstants.SeleccioneEstado, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @maxlength = "9"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RecibeAlertas, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("RecibeAlertas", EnumHelper.GetSelectList(typeof(Telemonitoreo.Enums.ListaSiNo), Telemonitoreo.Enums.ListaSiNo.No),
+            new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Grabar" />
+        </div>
+    </div>
+    <div id="ajaxpartialtarget"></div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function ClearInfoUsuario() {
+            document.getElementById("NombresUsuario").value = '';
+            document.getElementById("ApellidoPUsuario").value = '';
+            document.getElementById("ApellidoMUsuario").value = '';
+            document.getElementById("DireccionUsuario").value = '';
+        }
+
+        function CallbackResult() {
+            if (document.getElementById('ReniecError')) {
+                $("#UserName").parent().next().html('<span for="UserName" class="">' + document.getElementById('ReniecError').value + '</span>');
+                ClearInfoUsuario();
+            }
+            else {
+                if (document.getElementById('ReniecNombres')) {
+                    document.getElementById('NombresUsuario').value = document.getElementById('ReniecNombres').value;
+                }
+
+                if (document.getElementById('ReniecAPaterno')) {
+                    document.getElementById('ApellidoPUsuario').value = document.getElementById('ReniecAPaterno').value;
+                }
+
+                if (document.getElementById('ReniecAMaterno')) {
+                    document.getElementById('ApellidoMUsuario').value = document.getElementById('ReniecAMaterno').value;
+                }
+
+                if (document.getElementById('ReniecDireccion')) {
+                    document.getElementById('DireccionUsuario').value = document.getElementById('ReniecDireccion').value;
+                }
+            }
+        }
+        function RunAction() {
+            if ($("#UserName").val().length != 8) {
+                alertDialog("Debe ingresar el DNI (8 digitos) para obtener datos del usuario a registrar.", 200);
+            }
+            else {
+                $.ajax({
+                    url: "GetReniecData?dni=" + $("#UserName").val(),
+                    type: 'GET',
+                    cache: false,
+                    success: function (result) {
+                        $("#ajaxpartialtarget").html(result);
+                        CallbackResult();
+                        return false;
+                    }
+                });
+            }
+        }
+        $(function () {
+            //Validacion de solamente digitos
+            $("#UserName").keypress(function (e) {
+                //if the letter is not digit don't type anything
+                if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            $("#PhoneNumber").keypress(function (e) {
+                //if the letter is not digit don't type anything
+                if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            });
+        });
+    </script>
+}

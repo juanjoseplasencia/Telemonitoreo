@@ -1,0 +1,2345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TelemonitoreoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContenidoMensajeEducacional">
+          <Key>
+            <PropertyRef Name="IdContenidoMensajeEducacional" />
+          </Key>
+          <Property Name="IdContenidoMensajeEducacional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMensajeEducacional" Type="int" Nullable="false" />
+          <Property Name="DiaSemana" Type="tinyint" Nullable="false" />
+          <Property Name="Contenido" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="FechaUltimoProceso" Type="date" />
+        </EntityType>
+        <EntityType Name="Diagnostico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="Id10" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Grupo" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Establecimiento">
+          <Key>
+            <PropertyRef Name="EstablecimientoId" />
+          </Key>
+          <Property Name="EstablecimientoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="Renaes" Type="int" />
+          <Property Name="Ubigeo" Type="int" />
+          <Property Name="EstablecimientoEmail" Type="varchar" MaxLength="50" />
+          <Property Name="EstablecimientoTelefono" Type="varchar" MaxLength="50" />
+          <Property Name="EstablecimientoRUC" Type="varchar" MaxLength="15" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+          <Property Name="UsuarioCreacionId" Type="int" />
+          <Property Name="UsuarioActualizacionId" Type="int" />
+          <Property Name="EstadoId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gestante">
+          <Key>
+            <PropertyRef Name="GestanteKey" />
+          </Key>
+          <Property Name="GestanteKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GestanteId" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="GestanteNroDocumento" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="APaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AMaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="FechaUltimaRegla" Type="datetime" />
+          <Property Name="FechaProbableParto" Type="datetime" />
+          <Property Name="PresionSistolicaBase" Type="int" Nullable="false" />
+          <Property Name="PresionDiastolicaBase" Type="int" Nullable="false" />
+          <Property Name="DiagnosticoIngreso" Type="int" />
+          <Property Name="DiagnosticoIntermedio1" Type="int" />
+          <Property Name="DiagnosticoIntermedio2" Type="int" />
+          <Property Name="DiagnosticoEgreso" Type="int" />
+          <Property Name="EstablecimientoId" Type="int" Nullable="false" />
+          <Property Name="EstablecimientoNotificacionId" Type="int" Nullable="false" />
+          <Property Name="GestanteTelefono" Type="varchar" MaxLength="50" />
+          <Property Name="GestanteDireccion" Type="varchar" MaxLength="100" />
+          <Property Name="GestanteEmail" Type="varchar" MaxLength="50" />
+          <Property Name="DistritoId" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ProvinciaId" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="RegionId" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="HorarioMensaje" Type="tinyint" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="UsuarioEditor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GestanteCita">
+          <Key>
+            <PropertyRef Name="GestanteCitaId" />
+          </Key>
+          <Property Name="GestanteCitaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GestanteKey" Type="int" Nullable="false" />
+          <Property Name="FechaCita" Type="datetime" Nullable="false" />
+          <Property Name="HoraCita" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="NombreMedico" Type="varchar" MaxLength="50" />
+          <Property Name="EstablecimientoId" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="Eliminado" Type="bit" />
+          <Property Name="UsuarioEditor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GestanteMedicamento">
+          <Key>
+            <PropertyRef Name="GestanteMedicamentoId" />
+          </Key>
+          <Property Name="GestanteMedicamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GestanteKey" Type="int" Nullable="false" />
+          <Property Name="NombreMedico" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="EstablecimientoId" Type="int" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GestanteMedicamentoDetalle">
+          <Key>
+            <PropertyRef Name="GestanteMedicamentoDetalleId" />
+          </Key>
+          <Property Name="GestanteMedicamentoDetalleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GestanteMedicamentoId" Type="int" Nullable="false" />
+          <Property Name="MedicamentoId" Type="int" Nullable="false" />
+          <Property Name="Dosis" Type="varchar" MaxLength="50" />
+          <Property Name="Dias" Type="int" />
+          <Property Name="Cantidad" Type="varchar" MaxLength="50" />
+          <Property Name="Instrucciones" Type="varchar" MaxLength="250" />
+          <Property Name="FechaUltimoProceso" Type="date" />
+        </EntityType>
+        <EntityType Name="GestanteMonitoreo">
+          <Key>
+            <PropertyRef Name="GestanteMonitoreoId" />
+          </Key>
+          <Property Name="GestanteMonitoreoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GestanteKey" Type="int" Nullable="false" />
+          <Property Name="PresionSistolica" Type="int" />
+          <Property Name="PresionDiastolica" Type="int" />
+          <Property Name="Proteinuria" Type="int" />
+          <Property Name="MovimientosFetales" Type="int" />
+          <Property Name="SignosAlarma" Type="varchar" MaxLength="30" />
+          <Property Name="FechaRegistro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="MedicamentoId" />
+          </Key>
+          <Property Name="MedicamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Concentracion" Type="varchar" MaxLength="50" />
+          <Property Name="Formato" Type="varchar" MaxLength="50" />
+          <Property Name="Presentacion" Type="varchar" MaxLength="80" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="NumeroRegistro" Type="varchar" MaxLength="20" />
+          <Property Name="Titular" Type="varchar" MaxLength="50" />
+          <Property Name="IdDIGEMID" Type="int" />
+        </EntityType>
+        <EntityType Name="MensajeEducacional">
+          <Key>
+            <PropertyRef Name="IdMensajeEducacional" />
+          </Key>
+          <Property Name="IdMensajeEducacional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemanaEmbarazo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EstadoId" Type="tinyint" Nullable="false" />
+          <Property Name="UsuarioEditor" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Nivel" Type="tinyint" Nullable="false" />
+          <Property Name="MenuPadre" Type="smallint" />
+          <Property Name="EsBoton" Type="bit" Nullable="false" />
+          <Property Name="MenuImagen" Type="varchar" MaxLength="100" />
+          <Property Name="EstadoId" Type="tinyint" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
+          <Property Name="Orden" Type="tinyint" />
+          <Property Name="Controlador" Type="varchar" MaxLength="50" />
+          <Property Name="Accion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RegistroEvento">
+          <Key>
+            <PropertyRef Name="RegistroEventoKey" />
+          </Key>
+          <Property Name="RegistroEventoKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioKey" Type="int" Nullable="false" />
+          <Property Name="EventoFecha" Type="datetime" />
+          <Property Name="IdTipoAccion" Type="tinyint" Nullable="false" />
+          <Property Name="IdTipoObjeto" Type="tinyint" Nullable="false" />
+          <Property Name="IdRegistro" Type="int" />
+          <Property Name="Origen" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EstadoId" Type="tinyint" Nullable="false" />
+          <Property Name="AspNetRoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolMenu">
+          <Key>
+            <PropertyRef Name="Menu_MenuId" />
+            <PropertyRef Name="Rol_RolId" />
+          </Key>
+          <Property Name="Menu_MenuId" Type="smallint" Nullable="false" />
+          <Property Name="Rol_RolId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SmsQueue">
+          <Key>
+            <PropertyRef Name="SmsQueueId" />
+          </Key>
+          <Property Name="SmsQueueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroMovil" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoMensaje" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CuerpoMensaje" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Procesado" Type="bit" Nullable="false" />
+          <Property Name="ResultadoProceso" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ErrorProceso" Type="bit" Nullable="false" />
+          <Property Name="FechaProceso" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TipoAccion">
+          <Key>
+            <PropertyRef Name="IdTipoAccion" />
+          </Key>
+          <Property Name="IdTipoAccion" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoObjeto">
+          <Key>
+            <PropertyRef Name="IdTipoObjeto" />
+          </Key>
+          <Property Name="IdTipoObjeto" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ubigeo">
+          <Key>
+            <PropertyRef Name="IDUbigeo" />
+          </Key>
+          <Property Name="IDUbigeo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodUbigeo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CodDpto" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CodProv" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CodDist" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EsDpto" Type="bit" Nullable="false" />
+          <Property Name="EsProv" Type="bit" Nullable="false" />
+          <Property Name="EsDist" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioKey" />
+          </Key>
+          <Property Name="UsuarioKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="APaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AMaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EstadoId" Type="tinyint" Nullable="false" />
+          <Property Name="RecibeAlertas" Type="tinyint" Nullable="false" />
+          <Property Name="EstablecimientoId" Type="int" Nullable="false" />
+          <Property Name="UsuarioDireccion" Type="varchar" MaxLength="100" />
+          <Property Name="UsuarioEditor" Type="int" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" />
+        </EntityType>
+        <Association Name="FK_ContenidoMensajeEducacional_MensajeEducacional">
+          <End Role="MensajeEducacional" Type="Self.MensajeEducacional" Multiplicity="1" />
+          <End Role="ContenidoMensajeEducacional" Type="Self.ContenidoMensajeEducacional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MensajeEducacional">
+              <PropertyRef Name="IdMensajeEducacional" />
+            </Principal>
+            <Dependent Role="ContenidoMensajeEducacional">
+              <PropertyRef Name="IdMensajeEducacional" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Establecimiento_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Establecimiento">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstablecimientoGestante">
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="1" />
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstablecimientoNotificacionGestante">
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="1" />
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="EstablecimientoNotificacionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstablecimientoUsuario">
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestante_DiagnosticoEgreso">
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="0..1" />
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoEgreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestante_DiagnosticoIngreso">
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="0..1" />
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestante_DiagnosticoIntermedio1">
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="0..1" />
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoIntermedio1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestante_DiagnosticoIntermedio2">
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="0..1" />
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoIntermedio2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Gestante_Distrito' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Gestante_Distrito" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Gestante_Provincia' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Gestante_Provincia" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Gestante_Region' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Gestante_Region" />-->
+        <Association Name="FK_GestanteCitaEstablecimiento">
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="1" />
+          <End Role="GestanteCita" Type="Self.GestanteCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="GestanteCita">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteGestanteCita">
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="1" />
+          <End Role="GestanteCita" Type="Self.GestanteCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestante">
+              <PropertyRef Name="GestanteKey" />
+            </Principal>
+            <Dependent Role="GestanteCita">
+              <PropertyRef Name="GestanteKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteGestanteMedicamento">
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="1" />
+          <End Role="GestanteMedicamento" Type="Self.GestanteMedicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestante">
+              <PropertyRef Name="GestanteKey" />
+            </Principal>
+            <Dependent Role="GestanteMedicamento">
+              <PropertyRef Name="GestanteKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteGestanteMonitoreo">
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="1" />
+          <End Role="GestanteMonitoreo" Type="Self.GestanteMonitoreo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestante">
+              <PropertyRef Name="GestanteKey" />
+            </Principal>
+            <Dependent Role="GestanteMonitoreo">
+              <PropertyRef Name="GestanteKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteMedicamentoEstablecimiento">
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="1" />
+          <End Role="GestanteMedicamento" Type="Self.GestanteMedicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="GestanteMedicamento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteMedicamentoGestanteMedicamentoDetalle">
+          <End Role="GestanteMedicamento" Type="Self.GestanteMedicamento" Multiplicity="1" />
+          <End Role="GestanteMedicamentoDetalle" Type="Self.GestanteMedicamentoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GestanteMedicamento">
+              <PropertyRef Name="GestanteMedicamentoId" />
+            </Principal>
+            <Dependent Role="GestanteMedicamentoDetalle">
+              <PropertyRef Name="GestanteMedicamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicamentoGestanteMedicamentoDetalle">
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="1" />
+          <End Role="GestanteMedicamentoDetalle" Type="Self.GestanteMedicamentoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamento">
+              <PropertyRef Name="MedicamentoId" />
+            </Principal>
+            <Dependent Role="GestanteMedicamentoDetalle">
+              <PropertyRef Name="MedicamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MensajeEducacional_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="MensajeEducacional" Type="Self.MensajeEducacional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioKey" />
+            </Principal>
+            <Dependent Role="MensajeEducacional">
+              <PropertyRef Name="UsuarioEditor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolMenu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="RolMenu" Type="Self.RolMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="RolMenu">
+              <PropertyRef Name="Menu_MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolMenu_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="RolMenu" Type="Self.RolMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="RolMenu">
+              <PropertyRef Name="Rol_RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoAccionRegistroEvento">
+          <End Role="TipoAccion" Type="Self.TipoAccion" Multiplicity="1" />
+          <End Role="RegistroEvento" Type="Self.RegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAccion">
+              <PropertyRef Name="IdTipoAccion" />
+            </Principal>
+            <Dependent Role="RegistroEvento">
+              <PropertyRef Name="IdTipoAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoObjetoRegistroEvento">
+          <End Role="TipoObjeto" Type="Self.TipoObjeto" Multiplicity="1" />
+          <End Role="RegistroEvento" Type="Self.RegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoObjeto">
+              <PropertyRef Name="IdTipoObjeto" />
+            </Principal>
+            <Dependent Role="RegistroEvento">
+              <PropertyRef Name="IdTipoObjeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioRegistroEvento">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="RegistroEvento" Type="Self.RegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioKey" />
+            </Principal>
+            <Dependent Role="RegistroEvento">
+              <PropertyRef Name="UsuarioKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sproc_AddUpdateGestante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pMode" Type="smallint" Mode="In" />
+          <Parameter Name="pGestanteKey" Type="int" Mode="In" />
+          <Parameter Name="pGestanteNroDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="pNombres" Type="varchar" Mode="In" />
+          <Parameter Name="pAPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="pAMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="pFechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="pFechaUltimaRegla" Type="datetime" Mode="In" />
+          <Parameter Name="pFechaProbableParto" Type="datetime" Mode="In" />
+          <Parameter Name="pPresionSistolicaBase" Type="int" Mode="In" />
+          <Parameter Name="pPresionDiastolicaBase" Type="int" Mode="In" />
+          <Parameter Name="DiagnosticoIngreso" Type="int" Mode="In" />
+          <Parameter Name="pDiagnosticoIntermedio1" Type="int" Mode="In" />
+          <Parameter Name="pDiagnosticoIntermedio2" Type="int" Mode="In" />
+          <Parameter Name="pDiagnosticoEgreso" Type="int" Mode="In" />
+          <Parameter Name="pEstablecimientoId" Type="int" Mode="In" />
+          <Parameter Name="pEstablecimientoNotificacionId" Type="int" Mode="In" />
+          <Parameter Name="pGestanteTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="pGestanteDireccion" Type="varchar" Mode="In" />
+          <Parameter Name="pGestanteEmail" Type="varchar" Mode="In" />
+          <Parameter Name="pDistritoId" Type="varchar" Mode="In" />
+          <Parameter Name="pProvinciaId" Type="varchar" Mode="In" />
+          <Parameter Name="pRegionId" Type="varchar" Mode="In" />
+          <Parameter Name="pUsuarioEditor" Type="int" Mode="In" />
+          <Parameter Name="pHorarioMensaje" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="sproc_AddUpdateGestanteCita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pMode" Type="smallint" Mode="In" />
+          <Parameter Name="pGestanteCitaId" Type="int" Mode="In" />
+          <Parameter Name="pGestanteKey" Type="int" Mode="In" />
+          <Parameter Name="pFechaCita" Type="datetime" Mode="In" />
+          <Parameter Name="pHoraCita" Type="varchar" Mode="In" />
+          <Parameter Name="NombreMedico" Type="varchar" Mode="In" />
+          <Parameter Name="EstablecimientoId" Type="int" Mode="In" />
+          <Parameter Name="pUsuarioEditor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sproc_AddUpdateGestanteMonitoreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pGestanteKey" Type="int" Mode="In" />
+          <Parameter Name="pPresionSistolica" Type="int" Mode="In" />
+          <Parameter Name="pPresionDiastolica" Type="int" Mode="In" />
+          <Parameter Name="pProteinuria" Type="int" Mode="In" />
+          <Parameter Name="pMovimientosFetales" Type="int" Mode="In" />
+          <Parameter Name="pSignosAlarma" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sproc_GetAllMenuOptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_GetEstablecimientos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_InsertEnviarMensajesEducacionales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_InsertRecordatorioCitas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_InsertRecordatorioMedicamentos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_InsertRecordatorioReporteMonitoreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_ReportEvolucionGestante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_ReportGestantesParticipantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_ReportListadoEvolucionGestantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_ReportListadoResumenGestante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_ReportMedicacionGestante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sproc_ReportProcedenciaGestantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="TelemonitoreoModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContenidoMensajeEducacional" EntityType="Self.ContenidoMensajeEducacional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnostico" EntityType="Self.Diagnostico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Establecimiento" EntityType="Self.Establecimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gestante" EntityType="Self.Gestante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GestanteCita" EntityType="Self.GestanteCita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GestanteMedicamento" EntityType="Self.GestanteMedicamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GestanteMedicamentoDetalle" EntityType="Self.GestanteMedicamentoDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GestanteMonitoreo" EntityType="Self.GestanteMonitoreo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MensajeEducacional" EntityType="Self.MensajeEducacional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistroEvento" EntityType="Self.RegistroEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolMenu" EntityType="Self.RolMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SmsQueue" EntityType="Self.SmsQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoAccion" EntityType="Self.TipoAccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoObjeto" EntityType="Self.TipoObjeto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ubigeo" EntityType="Self.Ubigeo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ContenidoMensajeEducacional_MensajeEducacional" Association="Self.FK_ContenidoMensajeEducacional_MensajeEducacional">
+            <End Role="MensajeEducacional" EntitySet="MensajeEducacional" />
+            <End Role="ContenidoMensajeEducacional" EntitySet="ContenidoMensajeEducacional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Establecimiento_Estado" Association="Self.FK_Establecimiento_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Establecimiento" EntitySet="Establecimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstablecimientoGestante" Association="Self.FK_EstablecimientoGestante">
+            <End Role="Establecimiento" EntitySet="Establecimiento" />
+            <End Role="Gestante" EntitySet="Gestante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstablecimientoNotificacionGestante" Association="Self.FK_EstablecimientoNotificacionGestante">
+            <End Role="Establecimiento" EntitySet="Establecimiento" />
+            <End Role="Gestante" EntitySet="Gestante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstablecimientoUsuario" Association="Self.FK_EstablecimientoUsuario">
+            <End Role="Establecimiento" EntitySet="Establecimiento" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestante_DiagnosticoEgreso" Association="Self.FK_Gestante_DiagnosticoEgreso">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Gestante" EntitySet="Gestante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestante_DiagnosticoIngreso" Association="Self.FK_Gestante_DiagnosticoIngreso">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Gestante" EntitySet="Gestante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestante_DiagnosticoIntermedio1" Association="Self.FK_Gestante_DiagnosticoIntermedio1">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Gestante" EntitySet="Gestante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestante_DiagnosticoIntermedio2" Association="Self.FK_Gestante_DiagnosticoIntermedio2">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Gestante" EntitySet="Gestante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteCitaEstablecimiento" Association="Self.FK_GestanteCitaEstablecimiento">
+            <End Role="Establecimiento" EntitySet="Establecimiento" />
+            <End Role="GestanteCita" EntitySet="GestanteCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteGestanteCita" Association="Self.FK_GestanteGestanteCita">
+            <End Role="Gestante" EntitySet="Gestante" />
+            <End Role="GestanteCita" EntitySet="GestanteCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteGestanteMedicamento" Association="Self.FK_GestanteGestanteMedicamento">
+            <End Role="Gestante" EntitySet="Gestante" />
+            <End Role="GestanteMedicamento" EntitySet="GestanteMedicamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteGestanteMonitoreo" Association="Self.FK_GestanteGestanteMonitoreo">
+            <End Role="Gestante" EntitySet="Gestante" />
+            <End Role="GestanteMonitoreo" EntitySet="GestanteMonitoreo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteMedicamentoEstablecimiento" Association="Self.FK_GestanteMedicamentoEstablecimiento">
+            <End Role="Establecimiento" EntitySet="Establecimiento" />
+            <End Role="GestanteMedicamento" EntitySet="GestanteMedicamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteMedicamentoGestanteMedicamentoDetalle" Association="Self.FK_GestanteMedicamentoGestanteMedicamentoDetalle">
+            <End Role="GestanteMedicamento" EntitySet="GestanteMedicamento" />
+            <End Role="GestanteMedicamentoDetalle" EntitySet="GestanteMedicamentoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicamentoGestanteMedicamentoDetalle" Association="Self.FK_MedicamentoGestanteMedicamentoDetalle">
+            <End Role="Medicamento" EntitySet="Medicamento" />
+            <End Role="GestanteMedicamentoDetalle" EntitySet="GestanteMedicamentoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MensajeEducacional_Usuario" Association="Self.FK_MensajeEducacional_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="MensajeEducacional" EntitySet="MensajeEducacional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolMenu_Menu" Association="Self.FK_RolMenu_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="RolMenu" EntitySet="RolMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolMenu_Rol" Association="Self.FK_RolMenu_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="RolMenu" EntitySet="RolMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoAccionRegistroEvento" Association="Self.FK_TipoAccionRegistroEvento">
+            <End Role="TipoAccion" EntitySet="TipoAccion" />
+            <End Role="RegistroEvento" EntitySet="RegistroEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoObjetoRegistroEvento" Association="Self.FK_TipoObjetoRegistroEvento">
+            <End Role="TipoObjeto" EntitySet="TipoObjeto" />
+            <End Role="RegistroEvento" EntitySet="RegistroEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_AspNetUsers" Association="Self.FK_Usuario_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Estado" Association="Self.FK_Usuario_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioRegistroEvento" Association="Self.FK_UsuarioRegistroEvento">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="RegistroEvento" EntitySet="RegistroEvento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TelemonitoreoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Establecimiento">
+          <Key>
+            <PropertyRef Name="EstablecimientoId" />
+          </Key>
+          <Property Name="EstablecimientoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Renaes" Type="Int32" />
+          <Property Name="Ubigeo" Type="Int32" />
+          <Property Name="EstablecimientoEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstablecimientoTelefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioCreacionId" Type="Int32" />
+          <Property Name="UsuarioActualizacionId" Type="Int32" />
+          <NavigationProperty Name="Gestante" Relationship="Self.FK_EstablecimientoGestante" FromRole="Establecimiento" ToRole="Gestante" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_EstablecimientoUsuario" FromRole="Establecimiento" ToRole="Usuario" />
+          <NavigationProperty Name="GestanteMedicamento" Relationship="TelemonitoreoModel.FK_GestanteMedicamentoEstablecimiento" FromRole="Establecimiento" ToRole="GestanteMedicamento" />
+          <NavigationProperty Name="GestanteCita" Relationship="TelemonitoreoModel.FK_GestanteCitaEstablecimiento" FromRole="Establecimiento" ToRole="GestanteCita" />
+          <Property Name="EstablecimientoRUC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="TelemonitoreoModel.FK_Establecimiento_Estado" FromRole="Establecimiento" ToRole="Estado" />
+          <NavigationProperty Name="Gestante1" Relationship="TelemonitoreoModel.FK_EstablecimientoNotificacionGestante" FromRole="Establecimiento" ToRole="Gestante" />
+        </EntityType>
+        <EntityType Name="Gestante">
+          <Key>
+            <PropertyRef Name="GestanteKey" />
+          </Key>
+          <Property Name="GestanteKey" Type="Int32" Nullable="false" />
+          <Property Name="GestanteId" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaUltimaRegla" Type="DateTime" Precision="3" />
+          <Property Name="FechaProbableParto" Type="DateTime" Precision="3" />
+          <Property Name="DiagnosticoIngreso" Type="Int32" />
+          <Property Name="DiagnosticoEgreso" Type="Int32" />
+          <Property Name="EstablecimientoId" Type="Int32" Nullable="false" />
+          <Property Name="GestanteTelefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GestanteDireccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GestanteEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="DistritoId" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProvinciaId" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegionId" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Establecimiento" Relationship="Self.FK_EstablecimientoGestante" FromRole="Gestante" ToRole="Establecimiento" />
+          <NavigationProperty Name="GestanteCita" Relationship="Self.FK_GestanteGestanteCita" FromRole="Gestante" ToRole="GestanteCita" />
+          <NavigationProperty Name="GestanteMedicamento" Relationship="Self.FK_GestanteGestanteMedicamento" FromRole="Gestante" ToRole="GestanteMedicamento" />
+          <NavigationProperty Name="GestanteMonitoreo" Relationship="Self.FK_GestanteGestanteMonitoreo" FromRole="Gestante" ToRole="GestanteMonitoreo" />
+          <Property Name="GestanteNroDocumento" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="DiagnosticoIntermedio1" Type="Int32" />
+          <Property Name="DiagnosticoIntermedio2" Type="Int32" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <NavigationProperty Name="DiagEgreso" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoEgreso" FromRole="Gestante" ToRole="Diagnostico" />
+          <NavigationProperty Name="DiagIngreso" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoIngreso" FromRole="Gestante" ToRole="Diagnostico" />
+          <NavigationProperty Name="DiagIntermedio1" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoIntermedio1" FromRole="Gestante" ToRole="Diagnostico" />
+          <NavigationProperty Name="DiagIntermedio2" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoIntermedio2" FromRole="Gestante" ToRole="Diagnostico" />
+          <Property Name="UsuarioEditor" Type="Int32" Nullable="false" />
+          <Property Name="HorarioMensaje" Type="Byte" Nullable="false" />
+          <Property Name="PresionSistolicaBase" Type="Int32" Nullable="false" />
+          <Property Name="PresionDiastolicaBase" Type="Int32" Nullable="false" />
+          <Property Name="EstablecimientoNotificacionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EstablecimientoNotificacion" Relationship="TelemonitoreoModel.FK_EstablecimientoNotificacionGestante" FromRole="Gestante" ToRole="Establecimiento" />
+        </EntityType>
+        <EntityType Name="GestanteCita">
+          <Key>
+            <PropertyRef Name="GestanteCitaId" />
+          </Key>
+          <Property Name="GestanteCitaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GestanteKey" Type="Int32" Nullable="false" />
+          <Property Name="FechaCita" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="HoraCita" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Gestante" Relationship="Self.FK_GestanteGestanteCita" FromRole="GestanteCita" ToRole="Gestante" />
+          <Property Name="NombreMedico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstablecimientoId" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="UsuarioEditor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Establecimiento" Relationship="TelemonitoreoModel.FK_GestanteCitaEstablecimiento" FromRole="GestanteCita" ToRole="Establecimiento" />
+        </EntityType>
+        <EntityType Name="GestanteMedicamento">
+          <Key>
+            <PropertyRef Name="GestanteMedicamentoId" />
+          </Key>
+          <Property Name="GestanteMedicamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GestanteKey" Type="Int32" Nullable="false" />
+          <Property Name="NombreMedico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gestante" Relationship="Self.FK_GestanteGestanteMedicamento" FromRole="GestanteMedicamento" ToRole="Gestante" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="GestanteMedicamentoDetalle" Relationship="TelemonitoreoModel.FK_GestanteMedicamentoGestanteMedicamentoDetalle" FromRole="GestanteMedicamento" ToRole="GestanteMedicamentoDetalle" />
+          <Property Name="EstablecimientoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Establecimiento" Relationship="TelemonitoreoModel.FK_GestanteMedicamentoEstablecimiento" FromRole="GestanteMedicamento" ToRole="Establecimiento" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GestanteMonitoreo">
+          <Key>
+            <PropertyRef Name="GestanteMonitoreoId" />
+          </Key>
+          <Property Name="GestanteMonitoreoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GestanteKey" Type="Int32" Nullable="false" />
+          <Property Name="Proteinuria" Type="Int32" />
+          <Property Name="MovimientosFetales" Type="Int32" />
+          <Property Name="SignosAlarma" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gestante" Relationship="Self.FK_GestanteGestanteMonitoreo" FromRole="GestanteMonitoreo" ToRole="Gestante" />
+          <Property Name="PresionSistolica" Type="Int32" />
+          <Property Name="PresionDiastolica" Type="Int32" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="MedicamentoId" />
+          </Key>
+          <Property Name="MedicamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Concentracion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Formato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Presentacion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="NumeroRegistro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GestanteMedicamentoDetalle" Relationship="TelemonitoreoModel.FK_MedicamentoGestanteMedicamentoDetalle" FromRole="Medicamento" ToRole="GestanteMedicamentoDetalle" />
+          <Property Name="IdDIGEMID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RegistroEvento">
+          <Key>
+            <PropertyRef Name="RegistroEventoKey" />
+          </Key>
+          <Property Name="RegistroEventoKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioKey" Type="Int32" Nullable="false" />
+          <Property Name="EventoFecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_UsuarioRegistroEvento" FromRole="RegistroEvento" ToRole="Usuario" />
+          <Property Name="IdRegistro" Type="Int32" />
+          <Property Name="Origen" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoAccion" Type="Byte" Nullable="false" />
+          <Property Name="IdTipoObjeto" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="TipoAccion" Relationship="TelemonitoreoModel.FK_TipoAccionRegistroEvento" FromRole="RegistroEvento" ToRole="TipoAccion" />
+          <NavigationProperty Name="TipoObjeto" Relationship="TelemonitoreoModel.FK_TipoObjetoRegistroEvento" FromRole="RegistroEvento" ToRole="TipoObjeto" />
+        </EntityType>
+        <EntityType Name="Ubigeo">
+          <Key>
+            <PropertyRef Name="IDUbigeo" />
+          </Key>
+          <Property Name="IDUbigeo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodUbigeo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodDpto" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodProv" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodDist" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EsDpto" Type="Boolean" Nullable="false" />
+          <Property Name="EsProv" Type="Boolean" Nullable="false" />
+          <Property Name="EsDist" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioKey" />
+          </Key>
+          <Property Name="UsuarioKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EstablecimientoId" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioDireccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Establecimiento" Relationship="Self.FK_EstablecimientoUsuario" FromRole="Usuario" ToRole="Establecimiento" />
+          <NavigationProperty Name="RegistroEvento" Relationship="Self.FK_UsuarioRegistroEvento" FromRole="Usuario" ToRole="RegistroEvento" />
+          <Property Name="EstadoId" Type="Byte" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="TelemonitoreoModel.FK_Usuario_AspNetUsers" FromRole="Usuario" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Estado" Relationship="TelemonitoreoModel.FK_Usuario_Estado" FromRole="Usuario" ToRole="Estado" />
+          <Property Name="UsuarioEditor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MensajeEducacional" Relationship="TelemonitoreoModel.FK_MensajeEducacional_Usuario" FromRole="Usuario" ToRole="MensajeEducacional" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="RecibeAlertas" Type="Byte" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EstablecimientoGestante">
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="1" />
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstablecimientoUsuario">
+          <End Role="Establecimiento" Type="Self.Establecimiento" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteGestanteCita">
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="1" />
+          <End Role="GestanteCita" Type="Self.GestanteCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestante">
+              <PropertyRef Name="GestanteKey" />
+            </Principal>
+            <Dependent Role="GestanteCita">
+              <PropertyRef Name="GestanteKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteGestanteMedicamento">
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="1" />
+          <End Role="GestanteMedicamento" Type="Self.GestanteMedicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestante">
+              <PropertyRef Name="GestanteKey" />
+            </Principal>
+            <Dependent Role="GestanteMedicamento">
+              <PropertyRef Name="GestanteKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteGestanteMonitoreo">
+          <End Role="Gestante" Type="Self.Gestante" Multiplicity="1" />
+          <End Role="GestanteMonitoreo" Type="Self.GestanteMonitoreo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestante">
+              <PropertyRef Name="GestanteKey" />
+            </Principal>
+            <Dependent Role="GestanteMonitoreo">
+              <PropertyRef Name="GestanteKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioRegistroEvento">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="RegistroEvento" Type="Self.RegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioKey" />
+            </Principal>
+            <Dependent Role="RegistroEvento">
+              <PropertyRef Name="UsuarioKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TelemonitoreoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Establecimientos" EntityType="Self.Establecimiento" />
+          <EntitySet Name="Gestantes" EntityType="Self.Gestante" />
+          <EntitySet Name="GestanteCitas" EntityType="Self.GestanteCita" />
+          <EntitySet Name="GestanteMedicamentos" EntityType="Self.GestanteMedicamento" />
+          <EntitySet Name="GestanteMonitoreos" EntityType="Self.GestanteMonitoreo" />
+          <EntitySet Name="Medicamentos" EntityType="Self.Medicamento" />
+          <EntitySet Name="RegistroEventos" EntityType="Self.RegistroEvento" />
+          <EntitySet Name="Ubigeos" EntityType="Self.Ubigeo" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_EstablecimientoGestante" Association="Self.FK_EstablecimientoGestante">
+            <End Role="Establecimiento" EntitySet="Establecimientos" />
+            <End Role="Gestante" EntitySet="Gestantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstablecimientoUsuario" Association="Self.FK_EstablecimientoUsuario">
+            <End Role="Establecimiento" EntitySet="Establecimientos" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteGestanteCita" Association="Self.FK_GestanteGestanteCita">
+            <End Role="Gestante" EntitySet="Gestantes" />
+            <End Role="GestanteCita" EntitySet="GestanteCitas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteGestanteMedicamento" Association="Self.FK_GestanteGestanteMedicamento">
+            <End Role="Gestante" EntitySet="Gestantes" />
+            <End Role="GestanteMedicamento" EntitySet="GestanteMedicamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteGestanteMonitoreo" Association="Self.FK_GestanteGestanteMonitoreo">
+            <End Role="Gestante" EntitySet="Gestantes" />
+            <End Role="GestanteMonitoreo" EntitySet="GestanteMonitoreos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioRegistroEvento" Association="Self.FK_UsuarioRegistroEvento">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="RegistroEvento" EntitySet="RegistroEventos" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="TelemonitoreoModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="TelemonitoreoModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="TelemonitoreoModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="TelemonitoreoModel.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="TelemonitoreoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="TelemonitoreoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="TelemonitoreoModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Menus" EntityType="TelemonitoreoModel.Menu" />
+          <EntitySet Name="Roles" EntityType="TelemonitoreoModel.Rol" />
+          <AssociationSet Name="RolMenu" Association="TelemonitoreoModel.RolMenu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Rol" EntitySet="Roles" />
+          </AssociationSet>
+          <FunctionImport Name="sproc_AddUpdateGestante" ReturnType="Collection(Int32)">
+            <Parameter Name="pMode" Mode="In" Type="Int16" />
+            <Parameter Name="pGestanteKey" Mode="In" Type="Int32" />
+            <Parameter Name="pGestanteNroDocumento" Mode="In" Type="String" />
+            <Parameter Name="pNombres" Mode="In" Type="String" />
+            <Parameter Name="pAPaterno" Mode="In" Type="String" />
+            <Parameter Name="pAMaterno" Mode="In" Type="String" />
+            <Parameter Name="pFechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="pFechaUltimaRegla" Mode="In" Type="DateTime" />
+            <Parameter Name="pFechaProbableParto" Mode="In" Type="DateTime" />
+            <Parameter Name="pPresionSistolicaBase" Mode="In" Type="Int32" />
+            <Parameter Name="pPresionDiastolicaBase" Mode="In" Type="Int32" />
+            <Parameter Name="DiagnosticoIngreso" Mode="In" Type="Int32" />
+            <Parameter Name="pDiagnosticoIntermedio1" Mode="In" Type="Int32" />
+            <Parameter Name="pDiagnosticoIntermedio2" Mode="In" Type="Int32" />
+            <Parameter Name="pDiagnosticoEgreso" Mode="In" Type="Int32" />
+            <Parameter Name="pEstablecimientoId" Mode="In" Type="Int32" />
+            <Parameter Name="pEstablecimientoNotificacionId" Mode="In" Type="Int32" />
+            <Parameter Name="pGestanteTelefono" Mode="In" Type="String" />
+            <Parameter Name="pGestanteDireccion" Mode="In" Type="String" />
+            <Parameter Name="pGestanteEmail" Mode="In" Type="String" />
+            <Parameter Name="pDistritoId" Mode="In" Type="String" />
+            <Parameter Name="pProvinciaId" Mode="In" Type="String" />
+            <Parameter Name="pRegionId" Mode="In" Type="String" />
+            <Parameter Name="pUsuarioEditor" Mode="In" Type="Int32" />
+            <Parameter Name="pHorarioMensaje" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="sproc_AddUpdateGestanteMonitoreo" ReturnType="Collection(Int32)">
+            <Parameter Name="pGestanteKey" Mode="In" Type="Int32" />
+            <Parameter Name="pPresionSistolica" Mode="In" Type="Int32" />
+            <Parameter Name="pPresionDiastolica" Mode="In" Type="Int32" />
+            <Parameter Name="pProteinuria" Mode="In" Type="Int32" />
+            <Parameter Name="pMovimientosFetales" Mode="In" Type="Int32" />
+            <Parameter Name="pSignosAlarma" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sproc_AddUpdateGestanteCita" ReturnType="Collection(Int32)">
+            <Parameter Name="pMode" Mode="In" Type="Int16" />
+            <Parameter Name="pGestanteCitaId" Mode="In" Type="Int32" />
+            <Parameter Name="pGestanteKey" Mode="In" Type="Int32" />
+            <Parameter Name="pFechaCita" Mode="In" Type="DateTime" />
+            <Parameter Name="pHoraCita" Mode="In" Type="String" />
+            <Parameter Name="NombreMedico" Mode="In" Type="String" />
+            <Parameter Name="EstablecimientoId" Mode="In" Type="Int32" />
+            <Parameter Name="pUsuarioEditor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Usuario_AspNetUsers" Association="TelemonitoreoModel.FK_Usuario_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <EntitySet Name="Estado" EntityType="TelemonitoreoModel.Estado" />
+          <AssociationSet Name="FK_Usuario_Estado" Association="TelemonitoreoModel.FK_Usuario_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <FunctionImport Name="sproc_GetAllMenuOptions" ReturnType="Collection(TelemonitoreoModel.sproc_GetAllMenuOptions_Result)" />
+          <EntitySet Name="GestanteMedicamentoDetalle" EntityType="TelemonitoreoModel.GestanteMedicamentoDetalle" />
+          <AssociationSet Name="FK_GestanteMedicamentoGestanteMedicamentoDetalle" Association="TelemonitoreoModel.FK_GestanteMedicamentoGestanteMedicamentoDetalle">
+            <End Role="GestanteMedicamento" EntitySet="GestanteMedicamentos" />
+            <End Role="GestanteMedicamentoDetalle" EntitySet="GestanteMedicamentoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicamentoGestanteMedicamentoDetalle" Association="TelemonitoreoModel.FK_MedicamentoGestanteMedicamentoDetalle">
+            <End Role="Medicamento" EntitySet="Medicamentos" />
+            <End Role="GestanteMedicamentoDetalle" EntitySet="GestanteMedicamentoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteMedicamentoEstablecimiento" Association="TelemonitoreoModel.FK_GestanteMedicamentoEstablecimiento">
+            <End Role="Establecimiento" EntitySet="Establecimientos" />
+            <End Role="GestanteMedicamento" EntitySet="GestanteMedicamentos" />
+          </AssociationSet>
+          <EntitySet Name="Diagnosticos" EntityType="TelemonitoreoModel.Diagnostico" />
+          <AssociationSet Name="FK_Gestante_DiagnosticoEgreso" Association="TelemonitoreoModel.FK_Gestante_DiagnosticoEgreso">
+            <End Role="Diagnostico" EntitySet="Diagnosticos" />
+            <End Role="Gestante" EntitySet="Gestantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestante_DiagnosticoIngreso" Association="TelemonitoreoModel.FK_Gestante_DiagnosticoIngreso">
+            <End Role="Diagnostico" EntitySet="Diagnosticos" />
+            <End Role="Gestante" EntitySet="Gestantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestante_DiagnosticoIntermedio1" Association="TelemonitoreoModel.FK_Gestante_DiagnosticoIntermedio1">
+            <End Role="Diagnostico" EntitySet="Diagnosticos" />
+            <End Role="Gestante" EntitySet="Gestantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestante_DiagnosticoIntermedio2" Association="TelemonitoreoModel.FK_Gestante_DiagnosticoIntermedio2">
+            <End Role="Diagnostico" EntitySet="Diagnosticos" />
+            <End Role="Gestante" EntitySet="Gestantes" />
+          </AssociationSet>
+          <EntitySet Name="ContenidoMensajeEducacional" EntityType="TelemonitoreoModel.ContenidoMensajeEducacional" />
+          <EntitySet Name="MensajeEducacional" EntityType="TelemonitoreoModel.MensajeEducacional" />
+          <AssociationSet Name="FK_ContenidoMensajeEducacional_MensajeEducacional" Association="TelemonitoreoModel.FK_ContenidoMensajeEducacional_MensajeEducacional">
+            <End Role="MensajeEducacional" EntitySet="MensajeEducacional" />
+            <End Role="ContenidoMensajeEducacional" EntitySet="ContenidoMensajeEducacional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MensajeEducacional_Usuario" Association="TelemonitoreoModel.FK_MensajeEducacional_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="MensajeEducacional" EntitySet="MensajeEducacional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestanteCitaEstablecimiento" Association="TelemonitoreoModel.FK_GestanteCitaEstablecimiento">
+            <End Role="Establecimiento" EntitySet="Establecimientos" />
+            <End Role="GestanteCita" EntitySet="GestanteCitas" />
+          </AssociationSet>
+          <EntitySet Name="TipoAccion" EntityType="TelemonitoreoModel.TipoAccion" />
+          <EntitySet Name="TipoObjeto" EntityType="TelemonitoreoModel.TipoObjeto" />
+          <AssociationSet Name="FK_TipoAccionRegistroEvento" Association="TelemonitoreoModel.FK_TipoAccionRegistroEvento">
+            <End Role="TipoAccion" EntitySet="TipoAccion" />
+            <End Role="RegistroEvento" EntitySet="RegistroEventos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoObjetoRegistroEvento" Association="TelemonitoreoModel.FK_TipoObjetoRegistroEvento">
+            <End Role="TipoObjeto" EntitySet="TipoObjeto" />
+            <End Role="RegistroEvento" EntitySet="RegistroEventos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Establecimiento_Estado" Association="TelemonitoreoModel.FK_Establecimiento_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Establecimiento" EntitySet="Establecimientos" />
+          </AssociationSet>
+          <EntitySet Name="SmsQueues" EntityType="TelemonitoreoModel.SmsQueue" />
+          <FunctionImport Name="sproc_InsertEnviarMensajesEducacionales" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sproc_InsertRecordatorioMedicamentos" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sproc_InsertRecordatorioCitas" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sproc_ReportEvolucionGestante" ReturnType="Collection(TelemonitoreoModel.sproc_ReportEvolucionGestante_Result)" />
+          <FunctionImport Name="sproc_ReportMedicacionGestante" ReturnType="Collection(TelemonitoreoModel.sproc_ReportMedicacionGestante_Result)" />
+          <FunctionImport Name="sproc_GetEstablecimientos" ReturnType="Collection(TelemonitoreoModel.sproc_GetEstablecimientos_Result)" />
+          <AssociationSet Name="FK_EstablecimientoNotificacionGestante" Association="TelemonitoreoModel.FK_EstablecimientoNotificacionGestante">
+            <End Role="Establecimiento" EntitySet="Establecimientos" />
+            <End Role="Gestante" EntitySet="Gestantes" />
+          </AssociationSet>
+          <FunctionImport Name="sproc_ReportGestantesParticipantes" ReturnType="Collection(TelemonitoreoModel.sproc_ReportGestantesParticipantes_Result)" />
+          <FunctionImport Name="sproc_ReportListadoEvolucionGestantes" ReturnType="Collection(TelemonitoreoModel.sproc_ReportListadoEvolucionGestantes_Result)" />
+          <FunctionImport Name="sproc_ReportProcedenciaGestantes" ReturnType="Collection(TelemonitoreoModel.sproc_ReportProcedenciaGestantes_Result)" />
+          <FunctionImport Name="sproc_ReportListadoResumenGestante" ReturnType="Collection(TelemonitoreoModel.sproc_ReportListadoResumenGestante_Result)" />
+          <FunctionImport Name="sproc_InsertRecordatorioReporteMonitoreo" ReturnType="Collection(Int32)" />
+        </EntityContainer>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="TelemonitoreoModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="TelemonitoreoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="TelemonitoreoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="TelemonitoreoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="TelemonitoreoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="TelemonitoreoModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="Usuario" Relationship="TelemonitoreoModel.FK_Usuario_AspNetUsers" FromRole="AspNetUsers" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="TelemonitoreoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TelemonitoreoModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="TelemonitoreoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TelemonitoreoModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="TelemonitoreoModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="TelemonitoreoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nivel" Type="Byte" Nullable="false" />
+          <Property Name="MenuPadre" Type="Int16" />
+          <Property Name="EsBoton" Type="Boolean" Nullable="false" />
+          <Property Name="MenuImagen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="TelemonitoreoModel.RolMenu" FromRole="Menu" ToRole="Rol" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Byte" />
+          <Property Name="Controlador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="TelemonitoreoModel.RolMenu" FromRole="Rol" ToRole="Menu" />
+          <Property Name="AspNetRoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="RolMenu">
+          <End Type="TelemonitoreoModel.Menu" Role="Menu" Multiplicity="*" />
+          <End Type="TelemonitoreoModel.Rol" Role="Rol" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Usuario_AspNetUsers">
+          <End Type="TelemonitoreoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="TelemonitoreoModel.FK_Usuario_Estado" FromRole="Estado" ToRole="Usuario" />
+          <NavigationProperty Name="Establecimiento" Relationship="TelemonitoreoModel.FK_Establecimiento_Estado" FromRole="Estado" ToRole="Establecimiento" />
+        </EntityType>
+        <Association Name="FK_Usuario_Estado">
+          <End Type="TelemonitoreoModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sproc_GetAllMenuOptions_Result">
+          <Property Type="Int16" Name="MenuId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="Byte" Name="Nivel" Nullable="false" />
+          <Property Type="Int16" Name="MenuPadre" Nullable="true" />
+          <Property Type="Boolean" Name="EsBoton" Nullable="false" />
+          <Property Type="Byte" Name="Orden" Nullable="true" />
+          <Property Type="Boolean" Name="AccesoAdministrador" Nullable="true" />
+          <Property Type="Boolean" Name="AccesoPersonal" Nullable="true" />
+          <Property Type="Boolean" Name="AccesoAnalista" Nullable="true" />
+          <Property Type="Boolean" Name="AccesoGestante" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="GestanteMedicamentoDetalle">
+          <Key>
+            <PropertyRef Name="GestanteMedicamentoDetalleId" />
+          </Key>
+          <Property Name="GestanteMedicamentoDetalleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GestanteMedicamentoId" Type="Int32" Nullable="false" />
+          <Property Name="MedicamentoId" Type="Int32" Nullable="false" />
+          <Property Name="Dosis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dias" Type="Int32" />
+          <Property Name="Cantidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Instrucciones" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GestanteMedicamento" Relationship="TelemonitoreoModel.FK_GestanteMedicamentoGestanteMedicamentoDetalle" FromRole="GestanteMedicamentoDetalle" ToRole="GestanteMedicamento" />
+          <NavigationProperty Name="Medicamento" Relationship="TelemonitoreoModel.FK_MedicamentoGestanteMedicamentoDetalle" FromRole="GestanteMedicamentoDetalle" ToRole="Medicamento" />
+          <Property Name="FechaUltimoProceso" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_GestanteMedicamentoGestanteMedicamentoDetalle">
+          <End Type="TelemonitoreoModel.GestanteMedicamento" Role="GestanteMedicamento" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.GestanteMedicamentoDetalle" Role="GestanteMedicamentoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GestanteMedicamento">
+              <PropertyRef Name="GestanteMedicamentoId" />
+            </Principal>
+            <Dependent Role="GestanteMedicamentoDetalle">
+              <PropertyRef Name="GestanteMedicamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicamentoGestanteMedicamentoDetalle">
+          <End Type="TelemonitoreoModel.Medicamento" Role="Medicamento" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.GestanteMedicamentoDetalle" Role="GestanteMedicamentoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamento">
+              <PropertyRef Name="MedicamentoId" />
+            </Principal>
+            <Dependent Role="GestanteMedicamentoDetalle">
+              <PropertyRef Name="MedicamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteMedicamentoEstablecimiento">
+          <End Type="TelemonitoreoModel.Establecimiento" Role="Establecimiento" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.GestanteMedicamento" Role="GestanteMedicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="GestanteMedicamento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Diagnostico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gestante" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoEgreso" FromRole="Diagnostico" ToRole="Gestante" />
+          <NavigationProperty Name="Gestante1" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoIngreso" FromRole="Diagnostico" ToRole="Gestante" />
+          <NavigationProperty Name="Gestante2" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoIntermedio1" FromRole="Diagnostico" ToRole="Gestante" />
+          <NavigationProperty Name="Gestante3" Relationship="TelemonitoreoModel.FK_Gestante_DiagnosticoIntermedio2" FromRole="Diagnostico" ToRole="Gestante" />
+          <Property Name="Id10" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Grupo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Gestante_DiagnosticoEgreso">
+          <End Type="TelemonitoreoModel.Diagnostico" Role="Diagnostico" Multiplicity="0..1" />
+          <End Type="TelemonitoreoModel.Gestante" Role="Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoEgreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestante_DiagnosticoIngreso">
+          <End Type="TelemonitoreoModel.Diagnostico" Role="Diagnostico" Multiplicity="0..1" />
+          <End Type="TelemonitoreoModel.Gestante" Role="Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestante_DiagnosticoIntermedio1">
+          <End Type="TelemonitoreoModel.Diagnostico" Role="Diagnostico" Multiplicity="0..1" />
+          <End Type="TelemonitoreoModel.Gestante" Role="Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoIntermedio1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestante_DiagnosticoIntermedio2">
+          <End Type="TelemonitoreoModel.Diagnostico" Role="Diagnostico" Multiplicity="0..1" />
+          <End Type="TelemonitoreoModel.Gestante" Role="Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="DiagnosticoIntermedio2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContenidoMensajeEducacional">
+          <Key>
+            <PropertyRef Name="IdContenidoMensajeEducacional" />
+          </Key>
+          <Property Name="IdContenidoMensajeEducacional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMensajeEducacional" Type="Int32" Nullable="false" />
+          <Property Name="Contenido" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FechaUltimoProceso" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MensajeEducacional" Relationship="TelemonitoreoModel.FK_ContenidoMensajeEducacional_MensajeEducacional" FromRole="ContenidoMensajeEducacional" ToRole="MensajeEducacional" />
+          <Property Name="DiaSemana" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MensajeEducacional">
+          <Key>
+            <PropertyRef Name="IdMensajeEducacional" />
+          </Key>
+          <Property Name="IdMensajeEducacional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SemanaEmbarazo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoId" Type="Byte" Nullable="false" />
+          <Property Name="UsuarioEditor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ContenidoMensajeEducacional" Relationship="TelemonitoreoModel.FK_ContenidoMensajeEducacional_MensajeEducacional" FromRole="MensajeEducacional" ToRole="ContenidoMensajeEducacional" />
+          <NavigationProperty Name="Usuario" Relationship="TelemonitoreoModel.FK_MensajeEducacional_Usuario" FromRole="MensajeEducacional" ToRole="Usuario" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ContenidoMensajeEducacional_MensajeEducacional">
+          <End Type="TelemonitoreoModel.MensajeEducacional" Role="MensajeEducacional" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.ContenidoMensajeEducacional" Role="ContenidoMensajeEducacional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MensajeEducacional">
+              <PropertyRef Name="IdMensajeEducacional" />
+            </Principal>
+            <Dependent Role="ContenidoMensajeEducacional">
+              <PropertyRef Name="IdMensajeEducacional" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MensajeEducacional_Usuario">
+          <End Type="TelemonitoreoModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.MensajeEducacional" Role="MensajeEducacional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioKey" />
+            </Principal>
+            <Dependent Role="MensajeEducacional">
+              <PropertyRef Name="UsuarioEditor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestanteCitaEstablecimiento">
+          <End Type="TelemonitoreoModel.Establecimiento" Role="Establecimiento" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.GestanteCita" Role="GestanteCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="GestanteCita">
+              <PropertyRef Name="EstablecimientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TipoAccion">
+          <Key>
+            <PropertyRef Name="IdTipoAccion" />
+          </Key>
+          <Property Name="IdTipoAccion" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RegistroEvento" Relationship="TelemonitoreoModel.FK_TipoAccionRegistroEvento" FromRole="TipoAccion" ToRole="RegistroEvento" />
+        </EntityType>
+        <EntityType Name="TipoObjeto">
+          <Key>
+            <PropertyRef Name="IdTipoObjeto" />
+          </Key>
+          <Property Name="IdTipoObjeto" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RegistroEvento" Relationship="TelemonitoreoModel.FK_TipoObjetoRegistroEvento" FromRole="TipoObjeto" ToRole="RegistroEvento" />
+        </EntityType>
+        <Association Name="FK_TipoAccionRegistroEvento">
+          <End Type="TelemonitoreoModel.TipoAccion" Role="TipoAccion" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.RegistroEvento" Role="RegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAccion">
+              <PropertyRef Name="IdTipoAccion" />
+            </Principal>
+            <Dependent Role="RegistroEvento">
+              <PropertyRef Name="IdTipoAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoObjetoRegistroEvento">
+          <End Type="TelemonitoreoModel.TipoObjeto" Role="TipoObjeto" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.RegistroEvento" Role="RegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoObjeto">
+              <PropertyRef Name="IdTipoObjeto" />
+            </Principal>
+            <Dependent Role="RegistroEvento">
+              <PropertyRef Name="IdTipoObjeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Establecimiento_Estado">
+          <End Type="TelemonitoreoModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.Establecimiento" Role="Establecimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Establecimiento">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SmsQueue">
+          <Key>
+            <PropertyRef Name="SmsQueueId" />
+          </Key>
+          <Property Name="SmsQueueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroMovil" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoMensaje" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CuerpoMensaje" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Procesado" Type="Boolean" Nullable="false" />
+          <Property Name="ResultadoProceso" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorProceso" Type="Boolean" Nullable="false" />
+          <Property Name="FechaProceso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="sproc_ReportEvolucionGestante_Result">
+          <Property Type="Int32" Name="GestanteMonitoreoId" Nullable="false" />
+          <Property Type="Int32" Name="GestanteKey" Nullable="false" />
+          <Property Type="Int32" Name="PresionSistolica" Nullable="true" />
+          <Property Type="Int32" Name="PresionDiastolica" Nullable="true" />
+          <Property Type="Int32" Name="Proteinuria" Nullable="true" />
+          <Property Type="Int32" Name="MovimientosFetales" Nullable="true" />
+          <Property Type="String" Name="SignosAlarma" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" Precision="23" />
+          <Property Type="String" Name="GestanteNroDocumento" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="APaterno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AMaterno" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="Int32" Name="EstablecimientoId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sproc_ReportMedicacionGestante_Result">
+          <Property Type="String" Name="GestanteNroDocumento" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="APaterno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AMaterno" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="Medicamento" Nullable="true" MaxLength="151" />
+          <Property Type="Int32" Name="Dias" Nullable="true" />
+          <Property Type="String" Name="Cantidad" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="Int32" Name="EstablecimientoId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sproc_GetEstablecimientos_Result">
+          <Property Type="Int32" Name="EstablecimientoId" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Renaes" Nullable="true" />
+          <Property Type="Byte" Name="EstadoId" Nullable="false" />
+          <Property Type="String" Name="Distrito" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Provincia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Region" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <Association Name="FK_EstablecimientoNotificacionGestante">
+          <End Type="TelemonitoreoModel.Establecimiento" Role="Establecimiento" Multiplicity="1" />
+          <End Type="TelemonitoreoModel.Gestante" Role="Gestante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimiento">
+              <PropertyRef Name="EstablecimientoId" />
+            </Principal>
+            <Dependent Role="Gestante">
+              <PropertyRef Name="EstablecimientoNotificacionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sproc_ReportGestantesParticipantes_Result">
+          <Property Type="Int32" Name="Gestantekey" Nullable="false" />
+          <Property Type="String" Name="GestanteId" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="GestanteNroDocumento" Nullable="false" MaxLength="8" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="departamento" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="GestanteDireccion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GestanteTelefono" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Presion" Nullable="true" MaxLength="9" />
+          <Property Type="DateTime" Name="FechaProbableParto" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DiagnosticoIngreso" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="DiagnosticoEgreso" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="Cita" Nullable="true" MaxLength="136" />
+          <Property Type="String" Name="Medicamentos" Nullable="true" />
+          <Property Type="Int32" Name="EstablecimientoId" Nullable="false" />
+          </ComplexType>
+        <ComplexType Name="sproc_ReportListadoEvolucionGestantes_Result">
+          <Property Type="Int32" Name="Gestantekey" Nullable="false" />
+          <Property Type="String" Name="GestanteId" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="GestanteNroDocumento" Nullable="false" MaxLength="8" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="departamento" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="GestanteGM_KEY" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PresionArterial" Nullable="true" MaxLength="9" />
+          <Property Type="Int32" Name="Proteinuria" Nullable="true" />
+          <Property Type="Int32" Name="MovimientosFetales" Nullable="true" />
+          <Property Type="String" Name="SignosAlarma" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="EstablecimientoId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sproc_ReportProcedenciaGestantes_Result">
+          <Property Type="Int32" Name="Gestantekey" Nullable="false" />
+          <Property Type="String" Name="GestanteId" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="GestanteNroDocumento" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="Establecimiento" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Distrito" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Provincia" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="departamento" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="DiagnosticoIngreso" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="Cita" Nullable="true" MaxLength="136" />
+          <Property Type="Int32" Name="EstablecimientoId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sproc_ReportListadoResumenGestante_Result">
+          <Property Type="Int32" Name="Gestantekey" Nullable="false" />
+          <Property Type="String" Name="GestanteId" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="GestanteNroDocumento" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Establecimiento" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PresionArterial" Nullable="true" MaxLength="9" />
+          <Property Type="DateTime" Name="FechaProbableParto" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DiagnosticoIngreso" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="DiagnosticoEgreso" Nullable="true" MaxLength="400" />
+          <Property Type="Int32" Name="EstablecimientoId" Nullable="false" />
+          <Property Type="String" Name="GestanteDireccion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GestanteTelefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cita" Nullable="true" MaxLength="136" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="PresionSistolica" Nullable="true" />
+          <Property Type="Int32" Name="PresionDiastolica" Nullable="true" />
+          <Property Type="Int32" Name="Proteinuria" Nullable="true" />
+          <Property Type="Int32" Name="MovimientosFetales" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="NombreMedico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Medicamento" Nullable="true" MaxLength="151" />
+          <Property Type="Int32" Name="Dias" Nullable="true" />
+          <Property Type="String" Name="Cantidad" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TelemonitoreoModelStoreContainer" CdmEntityContainer="TelemonitoreoEntities">
+          <EntitySetMapping Name="Establecimientos">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Establecimiento">
+              <MappingFragment StoreEntitySet="Establecimiento">
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="EstablecimientoRUC" ColumnName="EstablecimientoRUC" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Renaes" ColumnName="Renaes" />
+                <ScalarProperty Name="Ubigeo" ColumnName="Ubigeo" />
+                <ScalarProperty Name="EstablecimientoEmail" ColumnName="EstablecimientoEmail" />
+                <ScalarProperty Name="EstablecimientoTelefono" ColumnName="EstablecimientoTelefono" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioCreacionId" ColumnName="UsuarioCreacionId" />
+                <ScalarProperty Name="UsuarioActualizacionId" ColumnName="UsuarioActualizacionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gestantes">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Gestante">
+              <MappingFragment StoreEntitySet="Gestante">
+                <ScalarProperty Name="EstablecimientoNotificacionId" ColumnName="EstablecimientoNotificacionId" />
+                <ScalarProperty Name="PresionDiastolicaBase" ColumnName="PresionDiastolicaBase" />
+                <ScalarProperty Name="PresionSistolicaBase" ColumnName="PresionSistolicaBase" />
+                <ScalarProperty Name="HorarioMensaje" ColumnName="HorarioMensaje" />
+                <ScalarProperty Name="UsuarioEditor" ColumnName="UsuarioEditor" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="DiagnosticoIntermedio2" ColumnName="DiagnosticoIntermedio2" />
+                <ScalarProperty Name="DiagnosticoIntermedio1" ColumnName="DiagnosticoIntermedio1" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="GestanteNroDocumento" ColumnName="GestanteNroDocumento" />
+                <ScalarProperty Name="GestanteKey" ColumnName="GestanteKey" />
+                <ScalarProperty Name="GestanteId" ColumnName="GestanteId" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="APaterno" ColumnName="APaterno" />
+                <ScalarProperty Name="AMaterno" ColumnName="AMaterno" />
+                <ScalarProperty Name="FechaUltimaRegla" ColumnName="FechaUltimaRegla" />
+                <ScalarProperty Name="FechaProbableParto" ColumnName="FechaProbableParto" />
+                <ScalarProperty Name="DiagnosticoIngreso" ColumnName="DiagnosticoIngreso" />
+                <ScalarProperty Name="DiagnosticoEgreso" ColumnName="DiagnosticoEgreso" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="GestanteTelefono" ColumnName="GestanteTelefono" />
+                <ScalarProperty Name="GestanteDireccion" ColumnName="GestanteDireccion" />
+                <ScalarProperty Name="GestanteEmail" ColumnName="GestanteEmail" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="DistritoId" ColumnName="DistritoId" />
+                <ScalarProperty Name="ProvinciaId" ColumnName="ProvinciaId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GestanteCitas">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.GestanteCita">
+              <MappingFragment StoreEntitySet="GestanteCita">
+                <ScalarProperty Name="UsuarioEditor" ColumnName="UsuarioEditor" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="NombreMedico" ColumnName="NombreMedico" />
+                <ScalarProperty Name="GestanteCitaId" ColumnName="GestanteCitaId" />
+                <ScalarProperty Name="GestanteKey" ColumnName="GestanteKey" />
+                <ScalarProperty Name="FechaCita" ColumnName="FechaCita" />
+                <ScalarProperty Name="HoraCita" ColumnName="HoraCita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GestanteMedicamentos">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.GestanteMedicamento">
+              <MappingFragment StoreEntitySet="GestanteMedicamento">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="GestanteMedicamentoId" ColumnName="GestanteMedicamentoId" />
+                <ScalarProperty Name="GestanteKey" ColumnName="GestanteKey" />
+                <ScalarProperty Name="NombreMedico" ColumnName="NombreMedico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GestanteMonitoreos">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.GestanteMonitoreo">
+              <MappingFragment StoreEntitySet="GestanteMonitoreo">
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="PresionDiastolica" ColumnName="PresionDiastolica" />
+                <ScalarProperty Name="PresionSistolica" ColumnName="PresionSistolica" />
+                <ScalarProperty Name="GestanteMonitoreoId" ColumnName="GestanteMonitoreoId" />
+                <ScalarProperty Name="GestanteKey" ColumnName="GestanteKey" />
+                <ScalarProperty Name="Proteinuria" ColumnName="Proteinuria" />
+                <ScalarProperty Name="MovimientosFetales" ColumnName="MovimientosFetales" />
+                <ScalarProperty Name="SignosAlarma" ColumnName="SignosAlarma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicamentos">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Medicamento">
+              <MappingFragment StoreEntitySet="Medicamento">
+                <ScalarProperty Name="IdDIGEMID" ColumnName="IdDIGEMID" />
+                <ScalarProperty Name="MedicamentoId" ColumnName="MedicamentoId" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Concentracion" ColumnName="Concentracion" />
+                <ScalarProperty Name="Formato" ColumnName="Formato" />
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="NumeroRegistro" ColumnName="NumeroRegistro" />
+                <ScalarProperty Name="Titular" ColumnName="Titular" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroEventos">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.RegistroEvento">
+              <MappingFragment StoreEntitySet="RegistroEvento">
+                <ScalarProperty Name="IdTipoObjeto" ColumnName="IdTipoObjeto" />
+                <ScalarProperty Name="IdTipoAccion" ColumnName="IdTipoAccion" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+                <ScalarProperty Name="RegistroEventoKey" ColumnName="RegistroEventoKey" />
+                <ScalarProperty Name="UsuarioKey" ColumnName="UsuarioKey" />
+                <ScalarProperty Name="EventoFecha" ColumnName="EventoFecha" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ubigeos">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Ubigeo">
+              <MappingFragment StoreEntitySet="Ubigeo">
+                <ScalarProperty Name="EsDist" ColumnName="EsDist" />
+                <ScalarProperty Name="EsProv" ColumnName="EsProv" />
+                <ScalarProperty Name="EsDpto" ColumnName="EsDpto" />
+                <ScalarProperty Name="IDUbigeo" ColumnName="IDUbigeo" />
+                <ScalarProperty Name="CodUbigeo" ColumnName="CodUbigeo" />
+                <ScalarProperty Name="CodDpto" ColumnName="CodDpto" />
+                <ScalarProperty Name="CodProv" ColumnName="CodProv" />
+                <ScalarProperty Name="CodDist" ColumnName="CodDist" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="RecibeAlertas" ColumnName="RecibeAlertas" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="UsuarioEditor" ColumnName="UsuarioEditor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="UsuarioKey" ColumnName="UsuarioKey" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="APaterno" ColumnName="APaterno" />
+                <ScalarProperty Name="AMaterno" ColumnName="AMaterno" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="UsuarioDireccion" ColumnName="UsuarioDireccion" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="MenuImagen" ColumnName="MenuImagen" />
+                <ScalarProperty Name="EsBoton" ColumnName="EsBoton" />
+                <ScalarProperty Name="MenuPadre" ColumnName="MenuPadre" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="AspNetRoleId" ColumnName="AspNetRoleId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RolMenu" TypeName="TelemonitoreoModel.RolMenu" StoreEntitySet="RolMenu">
+            <EndProperty Name="Rol">
+              <ScalarProperty Name="RolId" ColumnName="Rol_RolId" />
+            </EndProperty>
+            <EndProperty Name="Menu">
+              <ScalarProperty Name="MenuId" ColumnName="Menu_MenuId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TelemonitoreoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sproc_AddUpdateGestante" FunctionName="TelemonitoreoModel.Store.sproc_AddUpdateGestante" />
+          <FunctionImportMapping FunctionImportName="sproc_AddUpdateGestanteMonitoreo" FunctionName="TelemonitoreoModel.Store.sproc_AddUpdateGestanteMonitoreo" />
+          <FunctionImportMapping FunctionImportName="sproc_AddUpdateGestanteCita" FunctionName="TelemonitoreoModel.Store.sproc_AddUpdateGestanteCita" />
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sproc_GetAllMenuOptions" FunctionName="TelemonitoreoModel.Store.sproc_GetAllMenuOptions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_GetAllMenuOptions_Result">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="MenuPadre" ColumnName="MenuPadre" />
+                <ScalarProperty Name="EsBoton" ColumnName="EsBoton" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="AccesoAdministrador" ColumnName="AccesoAdministrador" />
+                <ScalarProperty Name="AccesoPersonal" ColumnName="AccesoPersonal" />
+                <ScalarProperty Name="AccesoAnalista" ColumnName="AccesoAnalista" />
+                <ScalarProperty Name="AccesoGestante" ColumnName="AccesoGestante" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="GestanteMedicamentoDetalle">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.GestanteMedicamentoDetalle">
+              <MappingFragment StoreEntitySet="GestanteMedicamentoDetalle">
+                <ScalarProperty Name="FechaUltimoProceso" ColumnName="FechaUltimoProceso" />
+                <ScalarProperty Name="Instrucciones" ColumnName="Instrucciones" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="MedicamentoId" ColumnName="MedicamentoId" />
+                <ScalarProperty Name="GestanteMedicamentoId" ColumnName="GestanteMedicamentoId" />
+                <ScalarProperty Name="GestanteMedicamentoDetalleId" ColumnName="GestanteMedicamentoDetalleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnosticos">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.Diagnostico">
+              <MappingFragment StoreEntitySet="Diagnostico">
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Id10" ColumnName="Id10" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContenidoMensajeEducacional">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.ContenidoMensajeEducacional">
+              <MappingFragment StoreEntitySet="ContenidoMensajeEducacional">
+                <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
+                <ScalarProperty Name="FechaUltimoProceso" ColumnName="FechaUltimoProceso" />
+                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+                <ScalarProperty Name="IdMensajeEducacional" ColumnName="IdMensajeEducacional" />
+                <ScalarProperty Name="IdContenidoMensajeEducacional" ColumnName="IdContenidoMensajeEducacional" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MensajeEducacional">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.MensajeEducacional">
+              <MappingFragment StoreEntitySet="MensajeEducacional">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioEditor" ColumnName="UsuarioEditor" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="SemanaEmbarazo" ColumnName="SemanaEmbarazo" />
+                <ScalarProperty Name="IdMensajeEducacional" ColumnName="IdMensajeEducacional" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoAccion">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.TipoAccion">
+              <MappingFragment StoreEntitySet="TipoAccion">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTipoAccion" ColumnName="IdTipoAccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoObjeto">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.TipoObjeto">
+              <MappingFragment StoreEntitySet="TipoObjeto">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTipoObjeto" ColumnName="IdTipoObjeto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SmsQueues">
+            <EntityTypeMapping TypeName="TelemonitoreoModel.SmsQueue">
+              <MappingFragment StoreEntitySet="SmsQueue">
+                <ScalarProperty Name="FechaProceso" ColumnName="FechaProceso" />
+                <ScalarProperty Name="ErrorProceso" ColumnName="ErrorProceso" />
+                <ScalarProperty Name="ResultadoProceso" ColumnName="ResultadoProceso" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="CuerpoMensaje" ColumnName="CuerpoMensaje" />
+                <ScalarProperty Name="TipoMensaje" ColumnName="TipoMensaje" />
+                <ScalarProperty Name="NumeroMovil" ColumnName="NumeroMovil" />
+                <ScalarProperty Name="SmsQueueId" ColumnName="SmsQueueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sproc_InsertEnviarMensajesEducacionales" FunctionName="TelemonitoreoModel.Store.sproc_InsertEnviarMensajesEducacionales" />
+          <FunctionImportMapping FunctionImportName="sproc_InsertRecordatorioMedicamentos" FunctionName="TelemonitoreoModel.Store.sproc_InsertRecordatorioMedicamentos" />
+          <FunctionImportMapping FunctionImportName="sproc_InsertRecordatorioCitas" FunctionName="TelemonitoreoModel.Store.sproc_InsertRecordatorioCitas" />
+          <FunctionImportMapping FunctionImportName="sproc_ReportEvolucionGestante" FunctionName="TelemonitoreoModel.Store.sproc_ReportEvolucionGestante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_ReportEvolucionGestante_Result">
+                <ScalarProperty Name="GestanteMonitoreoId" ColumnName="GestanteMonitoreoId" />
+                <ScalarProperty Name="GestanteKey" ColumnName="GestanteKey" />
+                <ScalarProperty Name="PresionSistolica" ColumnName="PresionSistolica" />
+                <ScalarProperty Name="PresionDiastolica" ColumnName="PresionDiastolica" />
+                <ScalarProperty Name="Proteinuria" ColumnName="Proteinuria" />
+                <ScalarProperty Name="MovimientosFetales" ColumnName="MovimientosFetales" />
+                <ScalarProperty Name="SignosAlarma" ColumnName="SignosAlarma" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="GestanteNroDocumento" ColumnName="GestanteNroDocumento" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="APaterno" ColumnName="APaterno" />
+                <ScalarProperty Name="AMaterno" ColumnName="AMaterno" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sproc_ReportMedicacionGestante" FunctionName="TelemonitoreoModel.Store.sproc_ReportMedicacionGestante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_ReportMedicacionGestante_Result">
+                <ScalarProperty Name="GestanteNroDocumento" ColumnName="GestanteNroDocumento" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="APaterno" ColumnName="APaterno" />
+                <ScalarProperty Name="AMaterno" ColumnName="AMaterno" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Medicamento" ColumnName="Medicamento" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sproc_GetEstablecimientos" FunctionName="TelemonitoreoModel.Store.sproc_GetEstablecimientos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_GetEstablecimientos_Result">
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Renaes" ColumnName="Renaes" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sproc_ReportGestantesParticipantes" FunctionName="TelemonitoreoModel.Store.sproc_ReportGestantesParticipantes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_ReportGestantesParticipantes_Result">
+                <ScalarProperty Name="Gestantekey" ColumnName="Gestantekey" />
+                <ScalarProperty Name="GestanteId" ColumnName="GestanteId" />
+                <ScalarProperty Name="GestanteNroDocumento" ColumnName="GestanteNroDocumento" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="GestanteDireccion" ColumnName="GestanteDireccion" />
+                <ScalarProperty Name="GestanteTelefono" ColumnName="GestanteTelefono" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Presion" ColumnName="Presion" />
+                <ScalarProperty Name="FechaProbableParto" ColumnName="FechaProbableParto" />
+                <ScalarProperty Name="DiagnosticoIngreso" ColumnName="DiagnosticoIngreso" />
+                <ScalarProperty Name="DiagnosticoEgreso" ColumnName="DiagnosticoEgreso" />
+                <ScalarProperty Name="Cita" ColumnName="Cita" />
+                <ScalarProperty Name="Medicamentos" ColumnName="Medicamentos" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sproc_ReportListadoEvolucionGestantes" FunctionName="TelemonitoreoModel.Store.sproc_ReportListadoEvolucionGestantes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_ReportListadoEvolucionGestantes_Result">
+                <ScalarProperty Name="Gestantekey" ColumnName="Gestantekey" />
+                <ScalarProperty Name="GestanteId" ColumnName="GestanteId" />
+                <ScalarProperty Name="GestanteNroDocumento" ColumnName="GestanteNroDocumento" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="GestanteGM_KEY" ColumnName="GestanteGM_KEY" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PresionArterial" ColumnName="PresionArterial" />
+                <ScalarProperty Name="Proteinuria" ColumnName="Proteinuria" />
+                <ScalarProperty Name="MovimientosFetales" ColumnName="MovimientosFetales" />
+                <ScalarProperty Name="SignosAlarma" ColumnName="SignosAlarma" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sproc_ReportProcedenciaGestantes" FunctionName="TelemonitoreoModel.Store.sproc_ReportProcedenciaGestantes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_ReportProcedenciaGestantes_Result">
+                <ScalarProperty Name="Gestantekey" ColumnName="Gestantekey" />
+                <ScalarProperty Name="GestanteId" ColumnName="GestanteId" />
+                <ScalarProperty Name="GestanteNroDocumento" ColumnName="GestanteNroDocumento" />
+                <ScalarProperty Name="Establecimiento" ColumnName="Establecimiento" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="DiagnosticoIngreso" ColumnName="DiagnosticoIngreso" />
+                <ScalarProperty Name="Cita" ColumnName="Cita" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sproc_ReportListadoResumenGestante" FunctionName="TelemonitoreoModel.Store.sproc_ReportListadoResumenGestante">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TelemonitoreoModel.sproc_ReportListadoResumenGestante_Result">
+                <ScalarProperty Name="Gestantekey" ColumnName="Gestantekey" />
+                <ScalarProperty Name="GestanteId" ColumnName="GestanteId" />
+                <ScalarProperty Name="GestanteNroDocumento" ColumnName="GestanteNroDocumento" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Establecimiento" ColumnName="Establecimiento" />
+                <ScalarProperty Name="PresionArterial" ColumnName="PresionArterial" />
+                <ScalarProperty Name="FechaProbableParto" ColumnName="FechaProbableParto" />
+                <ScalarProperty Name="DiagnosticoIngreso" ColumnName="DiagnosticoIngreso" />
+                <ScalarProperty Name="DiagnosticoEgreso" ColumnName="DiagnosticoEgreso" />
+                <ScalarProperty Name="EstablecimientoId" ColumnName="EstablecimientoId" />
+                <ScalarProperty Name="GestanteDireccion" ColumnName="GestanteDireccion" />
+                <ScalarProperty Name="GestanteTelefono" ColumnName="GestanteTelefono" />
+                <ScalarProperty Name="Cita" ColumnName="Cita" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="PresionSistolica" ColumnName="PresionSistolica" />
+                <ScalarProperty Name="PresionDiastolica" ColumnName="PresionDiastolica" />
+                <ScalarProperty Name="Proteinuria" ColumnName="Proteinuria" />
+                <ScalarProperty Name="MovimientosFetales" ColumnName="MovimientosFetales" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NombreMedico" ColumnName="NombreMedico" />
+                <ScalarProperty Name="Medicamento" ColumnName="Medicamento" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sproc_InsertRecordatorioReporteMonitoreo" FunctionName="TelemonitoreoModel.Store.sproc_InsertRecordatorioReporteMonitoreo" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

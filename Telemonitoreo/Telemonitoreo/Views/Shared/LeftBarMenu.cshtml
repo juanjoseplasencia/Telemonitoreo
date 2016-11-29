@@ -1,0 +1,46 @@
+@using Telemonitoreo.Models
+
+@{
+    List<MenuModel> menuList = ViewBag.LeftBarMenu;
+}
+<div id='cssmenu'>
+    <!--ul id="leftbarmenu"-->
+    <ul>
+        @foreach (var mp in menuList.Where(p => !p.MenuPadre.HasValue))
+        {
+            if (menuList.Count(p => p.MenuPadre == mp.MenuId) > 0)
+            {
+                <li class='active has-sub'>
+                    <a href="#"><span>@mp.Nombre</span></a>
+                    <ul>@RenderMenuItem(menuList, mp)</ul>
+                </li>
+            }
+            else
+            {
+                <li class='last'>
+                    <a href="@Url.Action(mp.Accion, mp.Controlador)"><span>@mp.Nombre</span></a>
+                </li>
+            }
+        }
+    </ul>
+</div>
+
+@helper RenderMenuItem(List<MenuModel> menuList, MenuModel mi)
+{
+    foreach (var cp in menuList.Where(p => p.MenuPadre == mi.MenuId))
+    {
+        if (menuList.Count(p => p.MenuPadre == cp.MenuId) > 0)
+        {
+            <li class='active has-sub'>
+                <a href="#"><span>@cp.Nombre</span></a>
+                <ul>@RenderMenuItem(menuList, cp)</ul>
+            </li>
+        }
+        else
+        {
+            <li class='last'>
+                <a href="@Url.Action(cp.Accion, cp.Controlador)"><span>@cp.Nombre</span></a>
+            </li>
+        }
+    }
+}

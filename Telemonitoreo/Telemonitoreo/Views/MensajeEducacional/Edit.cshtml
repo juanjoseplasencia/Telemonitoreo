@@ -1,0 +1,171 @@
+﻿@using Telemonitoreo.Utils;
+@model Telemonitoreo.Models.MensajeEducacionalViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Mensajes Educacionales</h2>
+@Styles.Render("~/Content/DataTables-1.8.1/extras/TableTools/media/css/css")
+
+@{
+    var diaListItems = new List<SelectListItem>
+    {
+        new SelectListItem
+        {
+            Text =  GlobalConstants.Dia1,
+            Value = "1"
+        },
+        new SelectListItem
+        {
+            Text =  GlobalConstants.Dia2,
+            Value = "2"
+        },
+        new SelectListItem
+        {
+            Text =  GlobalConstants.Dia3,
+            Value = "3"
+        },
+        new SelectListItem
+        {
+            Text =  GlobalConstants.Dia4,
+            Value = "4"
+        },
+        new SelectListItem
+        {
+            Text =  GlobalConstants.Dia5,
+            Value = "5"
+        },
+        new SelectListItem
+        {
+            Text =  GlobalConstants.Dia6,
+            Value = "6"
+        },
+        new SelectListItem
+        {
+            Text =  GlobalConstants.Dia7,
+            Value = "7"
+        }
+
+    };
+}
+
+@helper RenderDia(byte diaSemana)
+{
+    switch (diaSemana)
+    {
+        case 1:
+            @GlobalConstants.Dia1
+            break;
+        case 2:
+            @GlobalConstants.Dia2
+            break;
+        case 3:
+            @GlobalConstants.Dia3
+            break;
+        case 4:
+            @GlobalConstants.Dia4
+            break;
+        case 5:
+            @GlobalConstants.Dia5
+            break;
+        case 6:
+            @GlobalConstants.Dia6
+            break;
+        default:
+            @GlobalConstants.Dia7
+            break;
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdMensajeEducacional, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group">
+            @Html.LabelFor(model => model.SemanaEmbarazo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SemanaEmbarazo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <fieldset style="border: 1px solid #C0C0C0; padding: 10px; width: 70%;">
+            <legend style="font-weight: bold; margin: 0px; border: 0px; width: auto; font-size: 18px;">Contenido de Mensajes</legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Día</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("Dia", diaListItems, GlobalConstants.SeleccioneDia, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Contenido</label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        @Html.TextArea("nContenido", "", htmlAttributes: new { @class = "form-control", @style = "-moz-resize: none;-ms-resize: none;-o-resize: none;resize: none;" })
+                        <span class="input-group-btn" style="width: 10% !important;">
+                            <button type="button" class="btn btn-primary" onclick=" AddContenidoEdit(); ">+</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <table class="tbl hijos" id="tbl">
+                <thead>
+                <tr>
+                    <th style="width: 40px;">ID</th>
+                    <th style="width: 140px;">Día</th>
+                    <th style="width: 420px;">Contenido</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model.Contenido)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayTextFor(i => item.IdContenidoMensajeEducacional)
+                            </td>
+                            <td>
+                                @RenderDia(item.DiaSemana)
+                            </td>
+                            <td>
+                                @Html.DisplayTextFor(i => item.Contenido)
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+            <input type="button" value="Borrar Contenido" onclick=" DeleteContenido() "/>
+        </fieldset>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Grabar" class="btn btn-primary" onclick="GuardarContenidoEdit();" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Ver Listado de Mensajes Educacionales", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqDatePicker")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/DataTables")
+    @Scripts.Render("~/bundles/jqMensajeEducacionalForm")
+    <script type="text/javascript">
+    var DiaUno = "@Html.Raw(GlobalConstants.Dia1)";
+    var DiaDos = "@Html.Raw(GlobalConstants.Dia2)";
+    var DiaTres = "@Html.Raw(GlobalConstants.Dia3)";
+    var DiaCuatro = "@Html.Raw(GlobalConstants.Dia4)";
+    var DiaCinco = "@Html.Raw(GlobalConstants.Dia5)";
+    var DiaSeis = "@Html.Raw(GlobalConstants.Dia6)";
+    </script>
+}
+
+
