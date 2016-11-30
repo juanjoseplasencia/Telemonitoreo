@@ -10,8 +10,6 @@
             <s:element minOccurs="0" maxOccurs="1" name="CodCentroPoblado" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="DescripcionEntidadSectorial" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="CodigoSectorial" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="EstabFechaReg" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="EstabFechaMod" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -76,13 +74,9 @@
               <s:element minOccurs="0" maxOccurs="1" name="EstabDescDisa" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="EstabDescRed" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="EstabDescMRed" type="s:string" />
-              <s:element minOccurs="0" maxOccurs="1" name="EstabCodUE" type="s:string" />
-              <s:element minOccurs="0" maxOccurs="1" name="EstabCodCLAS" type="s:string" />
-              <s:element minOccurs="0" maxOccurs="1" name="EstabCodODSIS" type="s:string" />
-              <s:element minOccurs="0" maxOccurs="1" name="EstabFechaReg" type="s:string" />
-              <s:element minOccurs="0" maxOccurs="1" name="EstabFechaMod" type="s:string" />
-              <s:element minOccurs="0" maxOccurs="1" name="EstabRUC" type="s:string" />
-              <s:element minOccurs="0" maxOccurs="1" name="EstabRazSocial" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabEstrategico" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabSector" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstabRepresentante" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="CodDepartamento" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="CodProvincia" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="CodDistrito" type="s:string" />
@@ -98,6 +92,24 @@
           <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetListaEstablecimientoSalud_MIDIS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ubigeo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodDisaRedMicroRed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodCentroPoblado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DescripcionEntidadSectorial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoSectorial" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListaEstablecimientoSalud_MIDISResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListaEstablecimientoSalud_MIDISResult" type="tns:ArrayOfEstablecimientoSalud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetListaEstablecimientoSaludSoapIn">
@@ -106,16 +118,35 @@
   <wsdl:message name="GetListaEstablecimientoSaludSoapOut">
     <wsdl:part name="parameters" element="tns:GetListaEstablecimientoSaludResponse" />
   </wsdl:message>
+  <wsdl:message name="GetListaEstablecimientoSalud_MIDISSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListaEstablecimientoSalud_MIDIS" />
+  </wsdl:message>
+  <wsdl:message name="GetListaEstablecimientoSalud_MIDISSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListaEstablecimientoSalud_MIDISResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServiceSaludSoap">
     <wsdl:operation name="GetListaEstablecimientoSalud">
       <wsdl:input message="tns:GetListaEstablecimientoSaludSoapIn" />
       <wsdl:output message="tns:GetListaEstablecimientoSaludSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListaEstablecimientoSalud_MIDIS">
+      <wsdl:input message="tns:GetListaEstablecimientoSalud_MIDISSoapIn" />
+      <wsdl:output message="tns:GetListaEstablecimientoSalud_MIDISSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServiceSaludSoap" type="tns:ServiceSaludSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetListaEstablecimientoSalud">
       <soap:operation soapAction="http://tempuri.org/GetListaEstablecimientoSalud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListaEstablecimientoSalud_MIDIS">
+      <soap:operation soapAction="http://tempuri.org/GetListaEstablecimientoSalud_MIDIS" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -135,13 +166,22 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetListaEstablecimientoSalud_MIDIS">
+      <soap12:operation soapAction="http://tempuri.org/GetListaEstablecimientoSalud_MIDIS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServiceSalud">
     <wsdl:port name="ServiceSaludSoap" binding="tns:ServiceSaludSoap">
-      <soap:address location="http://intranet5.minsa.gob.pe/wsrenaes/servicesalud.asmx" />
+      <soap:address location="http://app12.susalud.gob.pe:8083/ServiceSalud.asmx" />
     </wsdl:port>
     <wsdl:port name="ServiceSaludSoap12" binding="tns:ServiceSaludSoap12">
-      <soap12:address location="http://intranet5.minsa.gob.pe/wsrenaes/servicesalud.asmx" />
+      <soap12:address location="http://app12.susalud.gob.pe:8083/ServiceSalud.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

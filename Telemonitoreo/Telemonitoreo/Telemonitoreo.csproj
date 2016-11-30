@@ -24,6 +24,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -272,7 +273,7 @@
     <Compile Include="Utils\LinqExtensionMethods.cs" />
     <Compile Include="Utils\ObjectShredder.cs" />
     <Compile Include="Utils\WebServiceAccess.cs" />
-    <Compile Include="Web References\pe.gob.minsa.intranet5\Reference.cs">
+    <Compile Include="Web References\pe.gob.susalud.app12\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -444,6 +445,14 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Web References\pe.gob.susalud.app12\EstablecimientoSalud.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\pe.gob.susalud.app12\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\pe.gob.susalud.app12\ServiceSalud.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -487,13 +496,6 @@
     <Content Include="Views\GestanteCita\Index.cshtml" />
     <Content Include="Views\GestanteMonitoreo\Index.cshtml" />
     <Content Include="Views\Establecimiento\Index.cshtml" />
-    <Content Include="Web References\pe.gob.minsa.intranet5\EstablecimientoSalud.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\pe.gob.minsa.intranet5\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Gestante\Ver.cshtml" />
@@ -519,7 +521,7 @@
     <Content Include="Views\Report\ReportGestanteProcedencia.cshtml" />
     <Content Include="Views\Report\ReportGestanteEvolucion.cshtml" />
     <Content Include="Views\Report\ReportResumenPorGestante.cshtml" />
-    <None Include="Web References\pe.gob.minsa.intranet5\servicesalud.wsdl" />
+    <None Include="Web References\pe.gob.susalud.app12\ServiceSalud.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -543,16 +545,16 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://intranet5.minsa.gob.pe/wsrenaes/servicesalud.asmx%3fWSDL">
+    <WebReferenceUrl Include="http://app12.susalud.gob.pe:8083/ServiceSalud.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\pe.gob.minsa.intranet5\</RelPath>
-      <UpdateFromURL>http://intranet5.minsa.gob.pe/wsrenaes/servicesalud.asmx%3fWSDL</UpdateFromURL>
+      <RelPath>Web References\pe.gob.susalud.app12\</RelPath>
+      <UpdateFromURL>http://app12.susalud.gob.pe:8083/ServiceSalud.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Telemonitoreo_pe_gob_minsa_intranet5_ServiceSalud</CachedSettingsPropName>
+      <CachedSettingsPropName>Telemonitoreo_pe_gob_susalud_app12_ServiceSalud</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="EstablecimientoSalud" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Telemonitoreo.pe.gob.minsa.intranet5.EstablecimientoSalud, Web References.pe.gob.minsa.intranet5.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>Telemonitoreo.pe.gob.susalud.app12.EstablecimientoSalud, Web References.pe.gob.susalud.app12.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

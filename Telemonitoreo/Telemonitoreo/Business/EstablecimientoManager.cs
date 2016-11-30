@@ -104,8 +104,8 @@ namespace Telemonitoreo.Business
                 listUbigeo.AddRange(ubigeos.Select(u => u.CodUbigeo));
             }
 
-            var wsRnd = new pe.gob.minsa.intranet5.ServiceSalud();
-            foreach (var es in listUbigeo.Select(lu => wsRnd.GetListaEstablecimientoSalud(lu, "", "", "", "", "", "")).SelectMany(establecimientos => establecimientos))
+            var wsRnd = new pe.gob.susalud.app12.ServiceSalud();
+            foreach (var es in listUbigeo.Select(lu => wsRnd.GetListaEstablecimientoSalud(lu, "", "", "", "")).SelectMany(establecimientos => establecimientos))
             {
                 tableEst.Rows.Add(es.EstabNombre, es.EstabDir, 1, es.EstUbigeo, es.CodigoEstSalud);
             }
@@ -122,7 +122,7 @@ namespace Telemonitoreo.Business
                 _db.Database.ExecuteSqlCommand("exec dbo.sproc_UpdateEstFromRenaes @TableRenaes", parameter);
                 return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return 0;
             }

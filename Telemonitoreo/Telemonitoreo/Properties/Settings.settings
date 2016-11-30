@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Telemonitoreo.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Telemonitoreo_pe_gob_minsa_intranet5_ServiceSalud" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://intranet5.minsa.gob.pe/wsrenaes/servicesalud.asmx</Value>
+    <Setting Name="Telemonitoreo_pe_gob_susalud_app12_ServiceSalud" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://app12.susalud.gob.pe:8083/ServiceSalud.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

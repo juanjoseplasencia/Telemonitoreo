@@ -3,3 +3,9 @@
 ################################################################################
 
 /Telemonitoreo/packages
+*.user
+/Telemonitoreo/.vs/Telemonitoreo/v14
+/Telemonitoreo/DataAccess/bin/Debug
+/Telemonitoreo/DataAccess/obj/Debug
+/Telemonitoreo/Telemonitoreo/bin
+/Telemonitoreo/Telemonitoreo/obj/Debug
