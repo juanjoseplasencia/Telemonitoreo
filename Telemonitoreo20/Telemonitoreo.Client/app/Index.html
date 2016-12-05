@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="telemonitoreoApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Telemonitoreo</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/app.css"/>
+</head>
+    <body>
+
+    <div class="container" ng-controller="gestanteController">
+      <div ng-repeat="gestante in gestantes">
+        <div class="row" style="padding-top:25px">
+            <div class="span3">
+                <div>
+                    <label><strong>Nombres</strong>: {{gestante.nombres}}</label>
+                </div>
+                <div>
+                    <label><strong>Apellido</strong>: {{gestante.aPaterno}} {{gestante.aPaterno}}</label>
+                </div>
+                <div>
+                    <label><strong>Establecimiento</strong>: {{gestante.establecimiento}}</label>
+                </div>
+            </div>
+        </div>
+<!--
+        <hr />
+        <div class="row">
+            <div class="col-md-1">
+                <h4>Citas: </h4>
+            </div>
+            <div class="col-md-11">
+                <ul class="thumbnails">
+                  <li ng-repeat="cita in gestante.citas">
+                      <div class="well span9">
+                        <span>Fecha: {{cita.fecha}}</span><br />
+                        <span>Doctor: {{cita.doctor}}</span>                  
+                      </div>
+                </ul>
+            </div>
+        </div>
+-->
+      </div>
+      <div style="color:red" ng-show="error">An error occured while querying the data</div>      
+    </div>
+
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/underscore-1.4.4.min.js"></script>
+    <script src="/lib/bootstrap.min.js"></script>
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular/angular-route.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/gestante-controller.js"></script>
+    <script src="/js/gestante-repository.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A54E2AE8-4C59-4C93-8988-93E816E5667B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\Telemonitoreo20\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\Telemonitoreo20\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaims.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogins.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContenidoMensajeEducacional.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnostico.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Establecimiento.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Estado.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gestante.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestanteCita.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestanteMedicamento.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestanteMedicamentoDetalle.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestanteMonitoreo.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Medicamento.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MensajeEducacional.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistroEvento.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rol.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SmsQueue.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_GetAllMenuOptions_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_GetEstablecimientos_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_ReportEvolucionGestante_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_ReportGestantesParticipantes_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_ReportListadoEvolucionGestantes_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_ReportListadoResumenGestante_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_ReportMedicacionGestante_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sproc_ReportProcedenciaGestantes_Result.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelemonitoreoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelemonitoreoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelemonitoreoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelemonitoreoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelemonitoreoModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TipoAccion.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoObjeto.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ubigeo.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>TelemonitoreoModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="TelemonitoreoModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TelemonitoreoModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="TelemonitoreoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TelemonitoreoModel.edmx</DependentUpon>
+      <LastGenOutput>TelemonitoreoModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="TelemonitoreoModel.edmx.diagram">
+      <DependentUpon>TelemonitoreoModel.edmx</DependentUpon>
+    </None>
+    <None Include="TelemonitoreoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TelemonitoreoModel.edmx</DependentUpon>
+      <LastGenOutput>TelemonitoreoModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

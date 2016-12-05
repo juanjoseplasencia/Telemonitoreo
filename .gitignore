@@ -1,8 +1,15 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /Telemonitoreo/packages
+bin/
+obj/
+*.suo
+packages/
+.vs/
+*.vssscc
+*.vspscc
 *.user
 /Telemonitoreo/.vs/Telemonitoreo/v14
 /Telemonitoreo/DataAccess/bin/Debug
